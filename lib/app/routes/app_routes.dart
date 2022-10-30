@@ -6,6 +6,7 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const DASHBOARD = _Paths.DASHBOARD;
   static const ORDERS = _Paths.ORDERS;
+  static const TODAYS_ORDERS = _Paths.TODAYS_ORDERS;
   static const ALL_PRODUCTS = _Paths.ALL_PRODUCTS;
   static const LOW_ON_STOCK_PRODUCT =
       _Paths.ALL_PRODUCTS + _Paths.LOW_ON_STOCK_PRODUCT;
@@ -20,6 +21,7 @@ abstract class Routes {
   static const LOGIN = _Paths.LOGIN;
   static const SHOPPING = _Paths.SHOPPING;
   static const CHECKOUT = _Paths.CHECKOUT;
+  static const FORGOR_PASSWORD = _Paths.LOGIN + _Paths.FORGOR_PASSWORD;
 }
 
 abstract class _Paths {
@@ -27,6 +29,7 @@ abstract class _Paths {
   static const HOME = '/home';
   static const DASHBOARD = '/admin/dashboard';
   static const ORDERS = '/admin/orders';
+  static const TODAYS_ORDERS = '/admin/orders/todays-order';
   static const ALL_PRODUCTS = '/admin/products/view/';
   static const ALL_PRODUCTS_QUERY = '/admin/products/view/:q';
   static const LOW_ON_STOCK_PRODUCT = 'low-on-stock';
@@ -40,4 +43,5 @@ abstract class _Paths {
   static const LOGIN = '/login';
   static const SHOPPING = '/shopping';
   static const CHECKOUT = '/checkout';
+  static const FORGOR_PASSWORD = '/forgor-password';
 }

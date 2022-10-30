@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
-import 'package:inventory_1/app/modules/admin/users/bindings/edit_user_binding.dart';
-import 'package:inventory_1/app/modules/admin/users/views/edit_user_view.dart';
+import 'package:inventory_1/app/modules/admin/orders/views/todays_order_view.dart';
 
 import '../modules/admin/dashboard/bindings/dashboard_binding.dart';
 import '../modules/admin/dashboard/views/dashboard_view.dart';
@@ -14,14 +13,18 @@ import '../modules/admin/products/views/all_products_view.dart';
 import '../modules/admin/products/views/edit_product_view.dart';
 import '../modules/admin/users/bindings/add_user_binding.dart';
 import '../modules/admin/users/bindings/all_users_binding.dart';
+import '../modules/admin/users/bindings/edit_user_binding.dart';
 import '../modules/admin/users/bindings/user_profile_binding.dart';
 import '../modules/admin/users/views/add_user_view.dart';
 import '../modules/admin/users/views/all_users_view.dart';
+import '../modules/admin/users/views/edit_user_view.dart';
 import '../modules/admin/users/views/user_profile_view.dart';
-import '../modules/login/bindings/login_binding.dart';
-import '../modules/login/views/login_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/login/bindings/login_binding.dart';
+import '../modules/login/forgor-password/bindings/forgor_password_binding.dart';
+import '../modules/login/forgor-password/views/forgor_password_view.dart';
+import '../modules/login/views/login_view.dart';
 import '../modules/sales_person/shopping/bindings/checkout_binding.dart';
 import '../modules/sales_person/shopping/bindings/shopping_binding.dart';
 import '../modules/sales_person/shopping/views/checkout_view.dart';
@@ -48,6 +51,11 @@ class AppPages {
     GetPage(
       name: _Paths.ORDERS,
       page: () => OrdersView(),
+      binding: OrdersBinding(),
+    ),
+    GetPage(
+      name: _Paths.TODAYS_ORDERS,
+      page: () => TodayOrders(),
       binding: OrdersBinding(),
     ),
     GetPage(
@@ -94,6 +102,13 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => const LoginView(),
       binding: LoginBinding(),
+      children: [
+        GetPage(
+          name: _Paths.FORGOR_PASSWORD,
+          page: () => const ForgorPasswordView(),
+          binding: ForgorPasswordBinding(),
+        ),
+      ],
     ),
     GetPage(
       name: _Paths.SHOPPING,

@@ -8,6 +8,7 @@ import 'package:inventory_1/app/utils/helpers.dart';
 
 class CheckoutController extends GetxController {
   RxMap<String, BasketItem> basket = RxMap({});
+  double inQuantity = 0;
 
   @override
   void onInit() {
@@ -109,7 +110,7 @@ class CheckoutController extends GetxController {
       await FirebaseFirestore.instance
           .collection('products')
           .doc(productId)
-          .update({"quantity": basketItem.quantity});
+          .update({"quantity": (inQuantity - basketItem.quantity)});
     });
   }
 

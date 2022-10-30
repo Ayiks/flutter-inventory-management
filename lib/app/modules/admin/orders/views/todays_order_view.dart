@@ -8,15 +8,15 @@ import 'package:inventory_1/app/utils/helpers.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../controllers/orders_controller.dart';
 
-class OrdersView extends GetView<OrdersController> {
-  OrdersView({Key? key}) : super(key: key);
+class TodayOrders extends GetView<OrdersController> {
+  TodayOrders({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Transaction History',
+          'Today\'s History',
           style: TextStyle(fontSize: Dimensions.font20),
         ),
         centerTitle: true,
@@ -26,76 +26,16 @@ class OrdersView extends GetView<OrdersController> {
             horizontal: Dimensions.width10, vertical: Dimensions.height20),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    onTap: () {
-                      controller.openDatePicker(setFromDate: true);
-                    },
-                    keyboardType: TextInputType.none,
-                    showCursor: false,
-                    controller: controller.filterFromDateTextEditingController,
-                    textCapitalization: TextCapitalization.sentences,
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                        label: const Text('Set Date From'),
-                        labelStyle: TextStyle(fontSize: Dimensions.font16),
-                        hintText: 'Set Date From',
-                        hintStyle: TextStyle(fontSize: Dimensions.font16),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Colors.black,
-                                width: Dimensions.width10 / 10))),
-                  ),
-                ),
-                SizedBox(
-                  width: Dimensions.width10,
-                ),
-                Expanded(
-                  child: TextFormField(
-                    onTap: () {
-                      controller.openDatePicker(setFromDate: false);
-                    },
-                    keyboardType: TextInputType.none,
-                    showCursor: false,
-                    controller: controller.filterToDateTextEditingController,
-                    textCapitalization: TextCapitalization.sentences,
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      label: const Text('Set Date To'),
-                      labelStyle: TextStyle(fontSize: Dimensions.font16),
-                      hintText: 'Set Date To',
-                      hintStyle: TextStyle(fontSize: Dimensions.font16),
-                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.black,
-                          width: Dimensions.width10 / 10,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                    child: TextButton(
-                  onPressed: controller.filterOrders,
-                  child: const Text("Search"),
-                ))
-              ],
-            ),
             SizedBox(
               height: Dimensions.height10,
             ),
             Obx(
               () => Expanded(
-                child: controller.filteredOrders.isNotEmpty
+                child: controller.todayOrders.isNotEmpty
                     ? ListView.separated(
-                        itemCount: controller.filteredOrders.length,
+                        itemCount: controller.todayOrders.length,
                         itemBuilder: (context, index) {
-                          Order order = controller.filteredOrders[index];
+                          Order order = controller.todayOrders[index];
 
                           return Container(
                             height: Dimensions.height20 * 10,
@@ -308,58 +248,6 @@ class OrdersView extends GetView<OrdersController> {
               ),
             ),
           ],
-        ),
-      ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-            border: Border(top: BorderSide(width: Dimensions.width10 / 10))),
-        height: Dimensions.height20 * 4,
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: Dimensions.width10, vertical: Dimensions.height10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                children: [
-                  Text(
-                    'Total Cost',
-                    style: TextStyle(fontSize: Dimensions.font16),
-                  ),
-                  SizedBox(
-                    height: Dimensions.height10,
-                  ),
-                  Obx(() {
-                    return Text(
-                      'GHC ${controller.totalSale}',
-                      style: TextStyle(
-                          fontSize: Dimensions.font16,
-                          fontWeight: FontWeight.w600),
-                    );
-                  })
-                ],
-              ),
-              Column(
-                children: [
-                  Text(
-                    'Total Quatity',
-                    style: TextStyle(fontSize: Dimensions.font16),
-                  ),
-                  SizedBox(
-                    height: Dimensions.height10,
-                  ),
-                  Obx(() {
-                    return Text(
-                      'GHC ${controller.totalSaleQuantity}',
-                      style: TextStyle(
-                          fontSize: Dimensions.font16,
-                          fontWeight: FontWeight.w600),
-                    );
-                  })
-                ],
-              ),
-            ],
-          ),
         ),
       ),
     );

@@ -19,6 +19,10 @@ class OrdersController extends GetxController {
   List<Order> get filteredOrders => _filteredOrders;
   set filteredOrders(List<Order> value) => _filteredOrders.value = value;
 
+  final _todayOrders = RxList<Order>([]);
+  List<Order> get todayOrders => _todayOrders;
+  set todayOrders(List<Order> value) => _todayOrders.value = value;
+
   final Rx<DateTime> _filterFromDate = Rx<DateTime>(DateTime.now());
   DateTime get filterFromDate => _filterFromDate.value;
   set filterFromDate(DateTime value) => _filterFromDate.value = value;
@@ -27,19 +31,31 @@ class OrdersController extends GetxController {
   DateTime get filterToDate => _fitlrerToDate.value;
   set filterToDate(DateTime value) => _fitlrerToDate.value = value;
 
+  final RxDouble _totalSale = RxDouble(0);
+  double get totalSale => _totalSale.value;
+  set totalSale(double value) => _totalSale.value = value;
+
+  final RxDouble _totalSaleQuantity = RxDouble(0);
+  double get totalSaleQuantity => _totalSaleQuantity.value;
+  set totalSaleQuantity(double value) => _totalSaleQuantity.value = value;
+
   @override
   void onInit() {
     super.onInit();
 
 // initialize the dates
-    filterFromDateTextEditingController.text =
-        DateFormat.yMMMMd().format(filterFromDate);
+    // filterFromDateTextEditingController.text =
+    //     DateFormat.yMMMMd().format(filterFromDate);
 
-    filterToDateTextEditingController.text =
-        DateFormat.yMMMMd().format(filterToDate);
+    // filterToDateTextEditingController.text =
+    //     DateFormat.yMMMMd().format(filterToDate);
 
 // fetch from Firestore
-    FirebaseFirestore.instance.collection('orders').snapshots().listen((event) {
+    FirebaseFirestore.instance
+        .collection('orders')
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .listen((event) {
       _allOrders(
         event.docs.map((doc) {
           Order order = Order.fromJson({...doc.data(), "id": doc.id});
@@ -49,6 +65,7 @@ class OrdersController extends GetxController {
 
 // filter the allProducts
       filterOrders();
+      todaysOrders();
     });
   }
 
@@ -88,6 +105,20 @@ class OrdersController extends GetxController {
       if (createdAt != null) {
         return createdAt.toDate().compareTo(filterFromDate) > 0 &&
             createdAt.toDate().compareTo(filterToDate) < 1;
+      }
+      return false;
+    }).toList();
+  }
+
+  void todaysOrders() {
+    todayOrders = allOrders.where((order) {
+      Timestamp? createdAt = order.createdAt;
+      final now = DateTime.now();
+      final newCreatedAt = DateFormat.yMMMEd().format(createdAt!.toDate());
+      final newNow = DateFormat.yMMMEd().format(now);
+
+      if (newCreatedAt == newNow) {
+        return true;
       }
       return false;
     }).toList();
