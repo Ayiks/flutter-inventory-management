@@ -242,8 +242,7 @@ class TodayOrders extends GetView<OrdersController> {
                         }),
                       )
                     : const Center(
-                        child: Text(
-                            "No orders were nade within the specified date range"),
+                        child: Text("No sales made today"),
                       ),
               ),
             ),

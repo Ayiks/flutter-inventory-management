@@ -30,14 +30,14 @@ class DashboardView extends GetView<DashboardController> {
                 },
               ),
             ),
-            IconButton(
-              onPressed: controller.handleSignOut,
-              icon: Icon(
-                Icons.logout_rounded,
-                size: Dimensions.iconSize24,
-                color: Colors.red,
-              ),
-            ),
+            // IconButton(
+            //   onPressed: controller.handleSignOut,
+            //   icon: Icon(
+            //     Icons.logout_rounded,
+            //     size: Dimensions.iconSize24,
+            //     color: Colors.red,
+            //   ),
+            // ),
           ],
         ),
         body: Padding(
@@ -66,7 +66,7 @@ class DashboardView extends GetView<DashboardController> {
                             label: 'Daily Sales',
                             value: controller.dashboardStats().dailySales,
                             onTap: () {
-                              Get.toNamed(Routes.ORDERS);
+                              Get.toNamed(Routes.TODAYS_ORDERS);
                             }),
                         StatCard(
                             color: Colors.green,

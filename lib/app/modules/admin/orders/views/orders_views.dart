@@ -350,7 +350,7 @@ class OrdersView extends GetView<OrdersController> {
                   ),
                   Obx(() {
                     return Text(
-                      'GHC ${controller.totalSaleQuantity}',
+                      ' ${controller.totalSaleQuantity}',
                       style: TextStyle(
                           fontSize: Dimensions.font16,
                           fontWeight: FontWeight.w600),

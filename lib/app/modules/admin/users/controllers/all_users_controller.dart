@@ -50,9 +50,8 @@ class AllUsersController extends GetxController {
         .doc(userProfile.userId)
         .delete()
         .then((_) {
+      Get.snackbar("Success", "person was deleted successfully");
       Get.back();
-      Get.back();
-      Get.snackbar("Success", "Product was deleted successfully");
     });
   }
 

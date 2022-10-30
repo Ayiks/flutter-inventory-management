@@ -104,18 +104,17 @@ class AddUserController extends GetxController {
             .then((userCredential) async {
           if (userCredential != null) {
 // get the user.id from the userCredential and save the profile to Firebase
-            await _userCollection.doc().set({
+            await _userCollection.doc(userCredential.user!.uid).set({
               ...userProfile.toJson(),
               "password": userPassword,
               "userId": userCredential.user!.uid,
             }).then((_) {
               // set the button to success
               _submitButtonController.buttonState = ButtonState.success;
-              Get.snackbar("Success", "Product added successfully");
               Get.back();
+              Get.snackbar("Success", "Person added successfully");
             }).catchError((onError) {
               _submitButtonController.buttonState = ButtonState.error;
-
               Get.snackbar("Error", "Something went wrong... $onError");
             }).timeout(const Duration(seconds: 10), onTimeout: () {
               _submitButtonController.buttonState = ButtonState.error;

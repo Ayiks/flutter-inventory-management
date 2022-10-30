@@ -27,6 +27,7 @@ class AllProdcutsView extends GetView<AllProductsController> {
               itemBuilder: ((context, index) {
                 Product product = controller.productList[index];
                 var quantity = product.quantity;
+                var lowOnStock = product.lowOnStock;
                 return Container(
                   height: Dimensions.height20 * 5,
                   decoration: BoxDecoration(
@@ -53,12 +54,11 @@ class AllProdcutsView extends GetView<AllProductsController> {
                             ),
                             Icon(
                               Icons.warning_amber_rounded,
-                              color:
-                                  (quantity ?? 0) <= 20 && (quantity ?? 0) > 0
-                                      ? Colors.yellow
-                                      : quantity == 0
-                                          ? Colors.red
-                                          : Colors.green,
+                              color: (quantity) <= lowOnStock && (quantity) > 0
+                                  ? Colors.yellow
+                                  : quantity == 0
+                                      ? Colors.red
+                                      : Colors.green,
                             )
                           ],
                         ),

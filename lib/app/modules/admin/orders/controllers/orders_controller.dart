@@ -108,6 +108,13 @@ class OrdersController extends GetxController {
       }
       return false;
     }).toList();
+
+    totalSale = 0;
+    totalSaleQuantity = 0;
+    for (Order order in filteredOrders) {
+      totalSale += order.total;
+      totalSaleQuantity += order.orderQuantity;
+    }
   }
 
   void todaysOrders() {

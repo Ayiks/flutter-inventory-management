@@ -34,7 +34,6 @@ class LoginController extends GetxController {
 
     _worker = everAll([_email, _password], (_) {
       bool isFormValid = formKey.currentState!.validate();
-      print("validating form: $isFormValid");
       _submitButtonController.isFormValid = isFormValid;
     });
   }
