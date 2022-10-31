@@ -7,18 +7,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1034552333945:android:5ff94c2456954e8663e6a8",
+        "mobilesdk_app_id": "1:1034552333945:android:01c522ec98006f5f63e6a8",
         "android_client_info": {
-          "package_name": "com.example.inventory_1"
+          "package_name": "com.ayiks.edcoldstore"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1034552333945-rq4ec5o7q6h0vedar9ntgdu02bbd58ud.apps.googleusercontent.com",
+          "client_id": "1034552333945-bcvv0jfe34851durjj07j2q8mpege744.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.inventory_1",
-            "certificate_hash": "15fb9e52d88cd577b2bec113199f42efcbfff913"
+            "package_name": "com.ayiks.edcoldstore",
+            "certificate_hash": "2dfa1c93c183acfd18b6ea672dcf85aae0f1dead"
           }
         },
         {
