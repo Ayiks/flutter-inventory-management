@@ -20,9 +20,6 @@ class CheckoutController extends GetxController {
     saveOrder();
 
     // STEP 2: adjust the product collection to reduce the quanitySold
-    adjustProductInventory();
-
-    completeCheckout();
   }
 
   int get itemsInBasketCount => basket.keys.length;
@@ -35,8 +32,13 @@ class CheckoutController extends GetxController {
     return basket[product.id]?.quantity ?? 0;
   }
 
+  double getBasketItemQuantitys(Product product) {
+    return basket[product.id]?.product.price ?? 0;
+  }
+
   double getSubTotal(Product product) {
-    return getProductUnitValue(product) * getBasketItemQuantity(product);
+    return (basket[product.id]?.product.price ?? 0) *
+        getProductUnitValue(product);
   }
 
   double getGrandQuantity() {
@@ -75,6 +77,7 @@ class CheckoutController extends GetxController {
   increaseBasketQuantity(Product product) {
     double basketQuantity = getBasketItemQuantity(product);
     double productUnitValue = getProductUnitValue(product);
+    inQuantity = product.quantity;
 
     if (basketQuantity < (product.quantity ?? 0)) {
       basketQuantity += productUnitValue;
@@ -94,15 +97,18 @@ class CheckoutController extends GetxController {
         backgroundColor: Colors.red,
         colorText: Colors.white,
       );
-      return;
-    }
+    } else {
+      OrderDTO orderDTO = OrderDTO(
+        orderDetails: basket,
+        orderQuantity: getGrandQuantity(),
+        total: getGrandTotal(),
+      );
+      FirebaseFirestore.instance.collection('orders').add(orderDTO.toJson());
 
-    OrderDTO orderDTO = OrderDTO(
-      orderDetails: basket,
-      orderQuantity: getGrandQuantity(),
-      total: getGrandTotal(),
-    );
-    FirebaseFirestore.instance.collection('orders').add(orderDTO.toJson());
+      adjustProductInventory();
+
+      completeCheckout();
+    }
   }
 
   void adjustProductInventory() {
@@ -115,8 +121,8 @@ class CheckoutController extends GetxController {
   }
 
   void completeCheckout() {
-    showSnackBar(message: "Your order been confirmed successfully");
     basket.clear();
     Get.back();
+    Get.snackbar("success", "Sales confirmed succesfully");
   }
 }

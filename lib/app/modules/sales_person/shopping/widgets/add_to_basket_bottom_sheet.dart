@@ -18,6 +18,9 @@ class AddToBasketBottomSheet extends GetView<CheckoutController> {
   Widget build(BuildContext context) {
     return Obx(
       () {
+        var quantity = controller.basket[product.id]?.quantity ?? 0;
+        var subTotal = (quantity * product.price);
+        print(subTotal);
         return Container(
           color: Colors.white,
           height: Dimensions.height30 * 8,
@@ -111,7 +114,7 @@ class AddToBasketBottomSheet extends GetView<CheckoutController> {
                               width: Dimensions.width10,
                             ),
                             Text(
-                              'GHC ${controller.getSubTotal(product)}',
+                              'GHC $subTotal',
                               style: TextStyle(
                                   fontSize: Dimensions.font16,
                                   fontWeight: FontWeight.bold),

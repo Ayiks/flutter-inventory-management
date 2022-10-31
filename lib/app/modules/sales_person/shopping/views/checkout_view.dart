@@ -72,37 +72,56 @@ class CheckoutView extends GetView<CheckoutController> {
                           SizedBox(
                             width: Dimensions.width10,
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(left: Dimensions.width20),
-                            child: Container(
-                              height: Dimensions.height10 * 4,
-                              width: Dimensions.width20 * 5,
-                              decoration: BoxDecoration(
-                                  color: Colors.black12,
-                                  borderRadius: BorderRadius.circular(
-                                      Dimensions.radius15 - 5)),
-                              child: Row(
-                                children: [
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.remove,
-                                      size: Dimensions.iconSize16,
-                                    ),
-                                    onPressed: () =>
-                                        controller.decreaseBasketQuantity(
-                                            basketItem.product),
+                          Container(
+                            padding: EdgeInsets.only(
+                                left: Dimensions.width10,
+                                right: Dimensions.width10),
+                            height: Dimensions.height10 * 4,
+                            width: Dimensions.width20 * 5,
+                            decoration: BoxDecoration(
+                                color: Colors.black12,
+                                borderRadius: BorderRadius.circular(
+                                    Dimensions.radius15 - 5)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GestureDetector(
+                                  onTap: () =>
+                                      controller.decreaseBasketQuantity(
+                                          basketItem.product),
+                                  child: Icon(
+                                    Icons.remove,
+                                    size: Dimensions.iconSize24,
                                   ),
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.add,
-                                      size: Dimensions.iconSize16,
-                                    ),
-                                    onPressed: () =>
-                                        controller.increaseBasketQuantity(
-                                            basketItem.product),
+                                ),
+                                GestureDetector(
+                                  onTap: () =>
+                                      controller.increaseBasketQuantity(
+                                          basketItem.product),
+                                  child: Icon(
+                                    Icons.add,
+                                    size: Dimensions.iconSize24,
                                   ),
-                                ],
-                              ),
+                                )
+                                // IconButton(
+                                //   icon: Icon(
+                                //     Icons.remove,
+                                //     size: Dimensions.iconSize16,
+                                //   ),
+                                //   onPressed: () =>
+                                //       controller.decreaseBasketQuantity(
+                                //           basketItem.product),
+                                // ),
+                                // IconButton(
+                                //   icon: Icon(
+                                //     Icons.add,
+                                //     size: Dimensions.iconSize16,
+                                //   ),
+                                //   onPressed: () =>
+                                //       controller.increaseBasketQuantity(
+                                //           basketItem.product),
+                                // ),
+                              ],
                             ),
                           )
                         ],

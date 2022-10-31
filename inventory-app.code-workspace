@@ -7,5 +7,7 @@
 			"path": "../invetory app refactor"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "interactive"
+	}
 }

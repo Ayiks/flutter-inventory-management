@@ -61,30 +61,34 @@ class ProductActionModal extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: Dimensions.height10,
+              height: Dimensions.height15,
             ),
             GestureDetector(
               onTap: () async {
                 Get.dialog(ConfirmProductDeleteAlertDialog(product: product));
               },
               child: Container(
-                height: 40,
+                height: Dimensions.height20 * 2,
                 decoration: BoxDecoration(
                     color: Colors.black12,
-                    borderRadius: BorderRadius.circular(10)),
+                    borderRadius:
+                        BorderRadius.circular(Dimensions.radius15 - 5)),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(Dimensions.width10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         'Delete Product',
-                        style: const TextStyle(
-                            color: Colors.red, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: Dimensions.font16,
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold),
                       ),
                       Icon(
                         Icons.delete_outline_rounded,
                         color: Colors.red,
+                        size: Dimensions.iconSize24,
                       )
                     ],
                   ),
