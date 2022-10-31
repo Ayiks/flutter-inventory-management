@@ -30,14 +30,14 @@ class DashboardView extends GetView<DashboardController> {
                 },
               ),
             ),
-            // IconButton(
-            //   onPressed: controller.handleSignOut,
-            //   icon: Icon(
-            //     Icons.logout_rounded,
-            //     size: Dimensions.iconSize24,
-            //     color: Colors.red,
-            //   ),
-            // ),
+            IconButton(
+              onPressed: controller.handleSignOut,
+              icon: Icon(
+                Icons.logout_rounded,
+                size: Dimensions.iconSize24,
+                color: Colors.red,
+              ),
+            ),
           ],
         ),
         body: Padding(
