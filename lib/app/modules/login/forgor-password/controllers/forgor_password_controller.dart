@@ -25,7 +25,6 @@ class ForgorPasswordController extends GetxController {
       _email,
     ], (_) {
       bool isFormValid = formKey.currentState!.validate();
-      print("validating form: $isFormValid");
       _submitButtonController.isFormValid = isFormValid;
     });
   }

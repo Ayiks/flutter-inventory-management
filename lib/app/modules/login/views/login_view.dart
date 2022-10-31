@@ -100,7 +100,7 @@ class LoginView extends GetView<LoginController> {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                       onPressed: () {
-                        Get.toNamed(Routes.FORGOR_PASSWORD);
+                        Get.offAndToNamed(Routes.FORGOR_PASSWORD);
                       },
                       child: Text(
                         'Forgot password?',
