@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:inventory_1/app/routes/app_pages.dart';
 import 'package:inventory_1/app/utils/dimmension.dart';
 import 'package:inventory_1/app/widgets/buttons.dart';
 
@@ -11,7 +12,10 @@ class ForgorPasswordView extends GetView<ForgorPasswordController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Forgot Password")),
+      appBar: AppBar(
+        title: const Text("Forgot Password"),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: Form(
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -83,6 +87,20 @@ class ForgorPasswordView extends GetView<ForgorPasswordController> {
                 ),
                 SizedBox(
                   height: Dimensions.height20,
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                      onPressed: () {
+                        Get.offAndToNamed(Routes.LOGIN);
+                      },
+                      child: Text(
+                        'Back to Login',
+                        style: TextStyle(
+                            color: const Color.fromARGB(255, 4, 82, 146),
+                            fontSize: Dimensions.font16),
+                        textAlign: TextAlign.right,
+                      )),
                 ),
               ],
             )),
