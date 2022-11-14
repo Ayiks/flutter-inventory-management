@@ -16,7 +16,7 @@ void main() async {
 
   runApp(
     GetMaterialApp(
-        title: "Application",
+        title: "ED Cold Store",
         initialRoute: AppPages.INITIAL,
         debugShowCheckedModeBanner: false,
         getPages: AppPages.routes,
