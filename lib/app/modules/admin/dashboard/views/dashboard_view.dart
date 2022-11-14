@@ -272,27 +272,27 @@ class DashboardView extends GetView<DashboardController> {
           ],
         ),
       ),
-      bottomNavigationBar: GestureDetector(
-        onTap: () => Get.toNamed(Routes.SHOPPING),
-        child: Container(
-          height: Dimensions.height20 * 4,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(Dimensions.radius15),
-                topRight: Radius.circular(Dimensions.radius15)),
-            color: Color.fromARGB(255, 11, 72, 122),
-          ),
-          child: Center(
-              child: Text(
-            'Sell',
-            style: TextStyle(
-                fontSize: Dimensions.font26,
-                fontWeight: FontWeight.w600,
-                color: Colors.white),
-          )),
-        ),
-      ),
+      // bottomNavigationBar: GestureDetector(
+      //   onTap: () => Get.toNamed(Routes.SHOPPING),
+      //   child: Container(
+      //     height: Dimensions.height20 * 4,
+      //     width: MediaQuery.of(context).size.width,
+      //     decoration: BoxDecoration(
+      //       borderRadius: BorderRadius.only(
+      //           topLeft: Radius.circular(Dimensions.radius15),
+      //           topRight: Radius.circular(Dimensions.radius15)),
+      //       color: Color.fromARGB(255, 11, 72, 122),
+      //     ),
+      //     child: Center(
+      //         child: Text(
+      //       'Sell',
+      //       style: TextStyle(
+      //           fontSize: Dimensions.font26,
+      //           fontWeight: FontWeight.w600,
+      //           color: Colors.white),
+      //     )),
+      //   ),
+      // ),
     );
   }
 }
