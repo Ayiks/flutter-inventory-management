@@ -275,7 +275,8 @@ class EditProductView extends GetView<EditProductController> {
                                                     BorderRadius.circular(10),
                                               ),
                                               labelText: 'Quantity',
-                                              prefix: Text('kilos    '),
+                                              prefix: Text(
+                                                  '${controller.product?.unit}    '),
                                               labelStyle: TextStyle(
                                                   fontSize: Dimensions.font16,
                                                   color: Colors.black,

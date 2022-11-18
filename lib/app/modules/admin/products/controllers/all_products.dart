@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventory_1/app/data/models/product/product.dart';
 import 'package:inventory_1/app/modules/admin/products/controllers/edit_product_controller.dart';
@@ -10,10 +11,25 @@ class AllProductsController extends GetxController {
   final EditProductController editProductController =
       Get.find<EditProductController>();
 
+  final TextEditingController searchController = TextEditingController();
+
+  late Worker worker;
+
+  final RxString _searchText = RxString('');
+  String get searchText => _searchText.value;
+  set searchText(String value) => _searchText.value = value;
+
   late StreamSubscription<QuerySnapshot<Map<String, dynamic>>>
       productStreamSubscription;
 
-  final RxList<Product> allProducts = RxList<Product>([]);
+  final RxList<Product> _allProducts = RxList<Product>([]);
+  List<Product> get allProducts => _allProducts;
+  set allProducts(List<Product> value) => _allProducts.value = value;
+
+  final RxList<Product> _searchedProducts = RxList<Product>([]);
+  List<Product> get searchResults => _searchedProducts;
+  set searchResults(List<Product> value) => _searchedProducts.value = value;
+
   final RxList<Product> lowOnStockProducts = RxList<Product>([]);
   final RxList<Product> outOfStockProducts = RxList<Product>([]);
   final RxList<Product> productList = RxList([]);
@@ -29,7 +45,7 @@ class AllProductsController extends GetxController {
         FirebaseFirestore.instance.collection('products').snapshots().listen(
       (event) {
         // STEP 1: set allProduct List
-        allProducts(
+        _allProducts(
           event.docs
               .map((doc) => Product.fromJson({...doc.data(), "id": doc.id}))
               .toList(),
@@ -46,6 +62,10 @@ class AllProductsController extends GetxController {
         print("Product Stream is done");
       },
     );
+
+    searchForProducts();
+
+    worker = everAll([_allProducts, _searchText], (_) => searchForProducts());
 
     String? q = Get.parameters['q'];
 
@@ -93,6 +113,13 @@ class AllProductsController extends GetxController {
   void showAlertDialog({required Product product}) {
     editProductController.product = product;
     Get.dialog(ProductActionModal(product: product));
+  }
+
+  void searchForProducts() {
+    searchResults = allProducts
+        .where((product) =>
+            product.name.toLowerCase().contains(searchText.toLowerCase()))
+        .toList();
   }
 
   @override

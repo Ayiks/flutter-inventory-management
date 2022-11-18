@@ -269,6 +269,23 @@ class DashboardView extends GetView<DashboardController> {
             //         ),
             //       );
             //     }))
+            GestureDetector(
+              onTap: () => Get.toNamed(Routes.SHOPPING),
+              child: Container(
+                height: Dimensions.height30 * 2.5,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 11, 72, 122),
+                    borderRadius: BorderRadius.circular(10)),
+                child: Center(
+                  child: Text(
+                    'SELL',
+                    style: TextStyle(
+                        fontSize: Dimensions.font26, color: Colors.white),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),

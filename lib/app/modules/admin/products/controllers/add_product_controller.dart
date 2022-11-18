@@ -93,8 +93,8 @@ class AddProductController extends GetxController {
         }).then((_) {
           // set the button to success
           _submitButtonController.buttonState = ButtonState.success;
-          Get.snackbar("Success", "Product added successfully");
           Get.back();
+          Get.snackbar("Success", "Product added successfully");
         }).catchError((onError) {
           _submitButtonController.buttonState = ButtonState.error;
 
