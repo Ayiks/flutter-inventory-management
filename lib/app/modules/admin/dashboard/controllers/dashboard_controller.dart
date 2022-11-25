@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:inventory_1/app/data/models/dashboard_start/dashboard_stats.dart';
 import 'package:inventory_1/app/data/models/order/order.dart';
 import 'package:inventory_1/app/data/models/product/product.dart';
@@ -79,13 +80,22 @@ class DashboardController extends GetxController {
               .where((Order order) {
             Timestamp? createdAt = order.createdAt;
 
-            if (createdAt != null) {
-              int year = createdAt.toDate().year;
-              int month = createdAt.toDate().month;
-              int day = createdAt.toDate().day;
-              return DateTime.utc(year, month, day).weekday ==
-                  DateTime.now().weekday;
+            final now = DateTime.now();
+            final newCreatedAt =
+                DateFormat.yMMMEd().format(createdAt!.toDate());
+            final newNow = DateFormat.yMMMEd().format(now);
+
+            if (newCreatedAt == newNow) {
+              return true;
             }
+
+            // if (createdAt != null) {
+            //   int year = createdAt.toDate().year;
+            //   int month = createdAt.toDate().month;
+            //   int day = createdAt.toDate().day;
+            //   return DateTime.utc(year, month, day).weekday ==
+            //       DateTime.now().weekday;
+            // }
             return false;
           }).toList(),
         );

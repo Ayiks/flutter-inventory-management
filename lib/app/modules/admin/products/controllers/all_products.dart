@@ -65,7 +65,9 @@ class AllProductsController extends GetxController {
 
     searchForProducts();
 
-    worker = everAll([_allProducts, _searchText], (_) => searchForProducts());
+    worker = everAll(
+        [_allProducts, outOfStockProducts, lowOnStockProducts, _searchText],
+        (_) => searchForProducts());
 
     String? q = Get.parameters['q'];
 
@@ -87,7 +89,8 @@ class AllProductsController extends GetxController {
   void setLowOnStockProducts() {
     lowOnStockProducts(
       allProducts
-          .where((product) => product.quantity <= product.lowOnStock)
+          .where((product) =>
+              product.quantity <= product.lowOnStock && product.quantity > 0)
           .toList(),
     );
   }
@@ -116,7 +119,7 @@ class AllProductsController extends GetxController {
   }
 
   void searchForProducts() {
-    searchResults = allProducts
+    searchResults = productList
         .where((product) =>
             product.name.toLowerCase().contains(searchText.toLowerCase()))
         .toList();
