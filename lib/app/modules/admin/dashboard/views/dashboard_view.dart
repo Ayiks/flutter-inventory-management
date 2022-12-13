@@ -54,49 +54,60 @@ class DashboardView extends GetView<DashboardController> {
             SizedBox(
               height: Dimensions.height20,
             ),
-            Obx(
-              () => Wrap(
-                  alignment: WrapAlignment.spaceEvenly,
-                  spacing: Dimensions.width20,
-                  runSpacing: Dimensions.width20,
-                  children: [
-                    StatCard(
-                        color: Colors.blue[900],
-                        icon: Icons.calendar_month,
-                        label: 'Daily Sales',
-                        value: controller.dashboardStats().dailySales,
-                        onTap: () {
-                          Get.toNamed(Routes.TODAYS_ORDERS);
-                        }),
-                    StatCard(
-                        color: Colors.green,
-                        icon: Icons.list_alt,
-                        label: 'Total Stock ',
-                        value: controller.dashboardStats().totalProductCount,
-                        onTap: () {
-                          print("tapped");
-                          Get.toNamed(Routes.ALL_PRODUCTS);
-                        }),
-                    StatCard(
-                        color: Colors.amber,
-                        icon: Icons.warning_amber_rounded,
-                        label: 'Low on Stock ',
-                        value:
-                            controller.dashboardStats().lowOnStockProductsCount,
-                        onTap: () {
-                          Get.toNamed(Routes.LOW_ON_STOCK_PRODUCT);
-                        }),
-                    StatCard(
-                        color: Colors.red,
-                        icon: Icons.warning_amber_rounded,
-                        label: 'Out Of Stock ',
-                        value:
-                            controller.dashboardStats().outOfStockProductsCount,
-                        onTap: () {
-                          Get.toNamed(Routes.OUT_OF_STOCK_PRODUCT);
-                        }),
-                  ]),
-            ),
+            Obx(() {
+              return Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      StatCard(
+                          color: Colors.blue[900],
+                          icon: Icons.calendar_month,
+                          label: 'Daily Sales',
+                          value: controller.dashboardStats().dailySales,
+                          onTap: () {
+                            Get.toNamed(Routes.TODAYS_ORDERS);
+                          }),
+                      StatCard(
+                          color: Colors.green,
+                          icon: Icons.list_alt,
+                          label: 'Total Stock ',
+                          value: controller.dashboardStats().totalProductCount,
+                          onTap: () {
+                            print("tapped");
+                            Get.toNamed(Routes.ALL_PRODUCTS);
+                          }),
+                    ],
+                  ),
+                  SizedBox(height: Dimensions.height10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      StatCard(
+                          color: Colors.amber,
+                          icon: Icons.warning_amber_rounded,
+                          label: 'Low on Stock ',
+                          value: controller
+                              .dashboardStats()
+                              .lowOnStockProductsCount,
+                          onTap: () {
+                            Get.toNamed(Routes.LOW_ON_STOCK_PRODUCT);
+                          }),
+                      StatCard(
+                          color: Colors.red,
+                          icon: Icons.warning_amber_rounded,
+                          label: 'Out Of Stock ',
+                          value: controller
+                              .dashboardStats()
+                              .outOfStockProductsCount,
+                          onTap: () {
+                            Get.toNamed(Routes.OUT_OF_STOCK_PRODUCT);
+                          }),
+                    ],
+                  )
+                ],
+              );
+            }),
             SizedBox(
               height: Dimensions.height20,
             ),

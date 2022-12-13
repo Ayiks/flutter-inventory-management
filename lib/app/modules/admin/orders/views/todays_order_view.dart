@@ -94,10 +94,7 @@ class TodayOrders extends GetView<OrdersController> {
 
                                                             return ListTile(
                                                               title: Text(
-                                                                entry
-                                                                    .value
-                                                                    .product
-                                                                    .name,
+                                                                '${entry.value.product.name}  ${entry.value.product.type}',
                                                                 style: TextStyle(
                                                                     fontSize:
                                                                         Dimensions

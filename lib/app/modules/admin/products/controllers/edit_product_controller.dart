@@ -79,7 +79,7 @@ class EditProductController extends GetxController {
                 {});
 
         Get.back();
-        Get.snackbar("Success", "User details updated");
+        Get.snackbar("Success", "Product details updated");
       } else {
         Get.snackbar(
             "Something went wrong", "Please check your inputs and try again");

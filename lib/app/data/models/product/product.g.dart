@@ -15,6 +15,7 @@ _$_Product _$$_ProductFromJson(Map<String, dynamic> json) => _$_Product(
       unit: json['unit'] as String? ?? "other",
       createdAt: timestampFromJson(json['createdAt']),
       lowOnStock: (json['lowOnStock'] as num).toDouble(),
+      updateAt: timestampFromJson(json['updateAt']),
     );
 
 Map<String, dynamic> _$$_ProductToJson(_$_Product instance) =>
@@ -27,6 +28,7 @@ Map<String, dynamic> _$$_ProductToJson(_$_Product instance) =>
       'unit': instance.unit,
       'createdAt': timestampToJson(instance.createdAt),
       'lowOnStock': instance.lowOnStock,
+      'updateAt': timestampToJson(instance.updateAt),
     };
 
 _$_ProductDTO _$$_ProductDTOFromJson(Map<String, dynamic> json) =>
@@ -37,6 +39,7 @@ _$_ProductDTO _$$_ProductDTOFromJson(Map<String, dynamic> json) =>
       quantity: (json['quantity'] as num?)?.toDouble() ?? 0,
       unit: json['unit'] as String? ?? "other",
       lowOnStock: (json['lowOnStock'] as num).toDouble(),
+      updatedAt: timestampFromJson(json['updatedAt']),
     );
 
 Map<String, dynamic> _$$_ProductDTOToJson(_$_ProductDTO instance) =>
@@ -47,4 +50,5 @@ Map<String, dynamic> _$$_ProductDTOToJson(_$_ProductDTO instance) =>
       'quantity': instance.quantity,
       'unit': instance.unit,
       'lowOnStock': instance.lowOnStock,
+      'updatedAt': timestampToJson(instance.updatedAt),
     };

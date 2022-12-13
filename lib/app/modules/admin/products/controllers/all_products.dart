@@ -33,6 +33,7 @@ class AllProductsController extends GetxController {
   final RxList<Product> lowOnStockProducts = RxList<Product>([]);
   final RxList<Product> outOfStockProducts = RxList<Product>([]);
   final RxList<Product> productList = RxList([]);
+  // final RxDouble totalValue = RxDouble(0);
 
   final RxString _pageTitle = RxString('');
   String get pageTitle => _pageTitle.value;
@@ -84,6 +85,19 @@ class AllProductsController extends GetxController {
     }
 
     super.onInit();
+  }
+
+  double getGrandQuantity() {
+    double quantity = 0.0;
+    // basket.forEach(
+    //   (_, basketItem) {
+    //     quantity += basketItem.quantity;
+    //   },
+    // );
+    for (var element in allProducts) {
+      quantity += element.price;
+    }
+    return quantity;
   }
 
   void setLowOnStockProducts() {
