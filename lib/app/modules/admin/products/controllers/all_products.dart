@@ -88,16 +88,23 @@ class AllProductsController extends GetxController {
   }
 
   double getGrandQuantity() {
-    double quantity = 0.0;
+    double stockValue = 0.0;
+
     // basket.forEach(
     //   (_, basketItem) {
     //     quantity += basketItem.quantity;
     //   },
     // );
     for (var element in allProducts) {
-      quantity += element.price;
+      double quantity = 0.0;
+      double stock = 0.0;
+
+      quantity = element.quantity;
+      stock = element.price;
+
+      stockValue += quantity * stock;
     }
-    return quantity;
+    return stockValue;
   }
 
   void setLowOnStockProducts() {

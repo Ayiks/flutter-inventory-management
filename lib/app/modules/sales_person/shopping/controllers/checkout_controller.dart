@@ -8,7 +8,6 @@ import 'package:inventory_1/app/utils/helpers.dart';
 
 class CheckoutController extends GetxController {
   RxMap<String, BasketItem> basket = RxMap({});
-  double inQuantity = 0;
 
   @override
   void onInit() {
@@ -77,15 +76,14 @@ class CheckoutController extends GetxController {
   increaseBasketQuantity(Product product) {
     double basketQuantity = getBasketItemQuantity(product);
     double productUnitValue = getProductUnitValue(product);
-    inQuantity = product.quantity;
 
-    if (basketQuantity < (product.quantity ?? 0)) {
+    if (basketQuantity < (product.quantity)) {
       basketQuantity += productUnitValue;
       basket[product.id] =
           BasketItem(product: product, quantity: basketQuantity);
     } else {
       showSnackBar(
-          message: "There are only ${product.quantity ?? 0} pcs of products");
+          message: "There are only ${product.quantity} pcs of products");
     }
   }
 
@@ -116,7 +114,9 @@ class CheckoutController extends GetxController {
       await FirebaseFirestore.instance
           .collection('products')
           .doc(productId)
-          .update({"quantity": (inQuantity - basketItem.quantity)});
+          .update({
+        "quantity": (basketItem.product.quantity - basketItem.quantity)
+      });
     });
   }
 
