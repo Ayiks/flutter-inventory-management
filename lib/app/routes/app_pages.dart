@@ -1,16 +1,20 @@
 import 'package:get/get.dart';
-import 'package:inventory_1/app/modules/admin/orders/views/todays_order_view.dart';
 
 import '../modules/admin/dashboard/bindings/dashboard_binding.dart';
 import '../modules/admin/dashboard/views/dashboard_view.dart';
 import '../modules/admin/orders/bindings/orders_binding.dart';
 import '../modules/admin/orders/views/orders_views.dart';
+import '../modules/admin/orders/views/todays_order_view.dart';
 import '../modules/admin/products/bindings/add_product_binding.dart';
 import '../modules/admin/products/bindings/all_products_binding.dart';
 import '../modules/admin/products/bindings/edit_product_binding.dart';
 import '../modules/admin/products/views/add_product_view.dart';
 import '../modules/admin/products/views/all_products_view.dart';
 import '../modules/admin/products/views/edit_product_view.dart';
+import '../modules/admin/stores/bindings/stores_binding.dart';
+import '../modules/admin/stores/bindings/create_stores_binding.dart';
+import '../modules/admin/stores/views/create_stores_view.dart';
+import '../modules/admin/stores/views/stores_view.dart';
 import '../modules/admin/users/bindings/add_user_binding.dart';
 import '../modules/admin/users/bindings/all_users_binding.dart';
 import '../modules/admin/users/bindings/edit_user_binding.dart';
@@ -119,6 +123,18 @@ class AppPages {
       name: _Paths.CHECKOUT,
       page: () => const CheckoutView(),
       binding: CheckoutBinding(),
+    ),
+    GetPage(
+      name: _Paths.STORES,
+      page: () => const StoresView(),
+      binding: StoresBinding(),
+      children: [
+        GetPage(
+          name: _Paths.CREATE_STORES,
+          page: () => const CreateStoresView(),
+          binding: CreateStoresBinding(),
+        ),
+      ],
     ),
   ];
 }

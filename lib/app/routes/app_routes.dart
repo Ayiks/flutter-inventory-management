@@ -22,6 +22,8 @@ abstract class Routes {
   static const SHOPPING = _Paths.SHOPPING;
   static const CHECKOUT = _Paths.CHECKOUT;
   static const FORGOR_PASSWORD = _Paths.LOGIN + _Paths.FORGOR_PASSWORD;
+  static const STORES = _Paths.STORES;
+  static const CREATE_STORES = _Paths.STORES + _Paths.CREATE_STORES;
 }
 
 abstract class _Paths {
@@ -44,4 +46,6 @@ abstract class _Paths {
   static const SHOPPING = '/shopping';
   static const CHECKOUT = '/checkout';
   static const FORGOR_PASSWORD = '/forgor-password';
+  static const STORES = '/stores';
+  static const CREATE_STORES = '/create-stores';
 }
