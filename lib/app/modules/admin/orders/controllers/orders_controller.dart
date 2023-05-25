@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:inventory_1/app/data/models/order/order.dart';
+import 'package:inventory_1/app/data/models/order/order.dart' as o;
 import 'package:inventory_1/app/utils/helpers.dart';
 
 class OrdersController extends GetxController {
@@ -11,17 +11,17 @@ class OrdersController extends GetxController {
   final TextEditingController filterToDateTextEditingController =
       TextEditingController();
 
-  final RxList<Order> _allOrders = RxList<Order>([]);
-  List<Order> get allOrders => _allOrders;
-  set allOrders(List<Order> value) => _allOrders.value = value;
+  final RxList<o.Order> _allOrders = RxList<o.Order>([]);
+  List<o.Order> get allOrders => _allOrders;
+  set allOrders(List<o.Order> value) => _allOrders.value = value;
 
-  final RxList<Order> _filteredOrders = RxList<Order>([]);
-  List<Order> get filteredOrders => _filteredOrders;
-  set filteredOrders(List<Order> value) => _filteredOrders.value = value;
+  final RxList<o.Order> _filteredOrders = RxList<o.Order>([]);
+  List<o.Order> get filteredOrders => _filteredOrders;
+  set filteredOrders(List<o.Order> value) => _filteredOrders.value = value;
 
-  final _todayOrders = RxList<Order>([]);
-  List<Order> get todayOrders => _todayOrders;
-  set todayOrders(List<Order> value) => _todayOrders.value = value;
+  final _todayOrders = RxList<o.Order>([]);
+  List<o.Order> get todayOrders => _todayOrders;
+  set todayOrders(List<o.Order> value) => _todayOrders.value = value;
 
   final Rx<DateTime> _filterFromDate = Rx<DateTime>(DateTime.now());
   DateTime get filterFromDate => _filterFromDate.value;
@@ -58,7 +58,7 @@ class OrdersController extends GetxController {
         .listen((event) {
       _allOrders(
         event.docs.map((doc) {
-          Order order = Order.fromJson({...doc.data(), "id": doc.id});
+          o.Order order = o.Order.fromJson({...doc.data(), "id": doc.id});
           return order;
         }).toList(),
       );
@@ -111,7 +111,7 @@ class OrdersController extends GetxController {
 
     totalSale = 0;
     totalSaleQuantity = 0;
-    for (Order order in filteredOrders) {
+    for (o.Order order in filteredOrders) {
       totalSale += order.total;
       totalSaleQuantity += order.orderQuantity;
     }
