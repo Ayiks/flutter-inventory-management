@@ -72,7 +72,7 @@ class LoginController extends GetxController {
             _submitButtonController.buttonState = ButtonState.success;
             Future.delayed(const Duration(seconds: 3), () {
               if (userProfile.role == 'admin') {
-                Get.offAndToNamed(Routes.DASHBOARD);
+                Get.offAndToNamed(Routes.STORES);
               } else {
                 Get.offAndToNamed(Routes.SHOPPING);
               }

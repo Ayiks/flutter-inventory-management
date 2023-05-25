@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventory_1/app/data/models/product/product.dart';
-import 'package:inventory_1/app/utils/helpers.dart';
 import 'package:inventory_1/app/widgets/buttons.dart';
 
 class AddProductController extends GetxController {
