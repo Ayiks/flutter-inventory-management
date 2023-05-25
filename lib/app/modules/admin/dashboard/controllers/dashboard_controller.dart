@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:inventory_1/app/data/models/dashboard_start/dashboard_stats.dart';
-import 'package:inventory_1/app/data/models/order/order.dart';
+import 'package:inventory_1/app/data/models/order/order.dart' as o;
 import 'package:inventory_1/app/data/models/product/product.dart';
 import 'package:inventory_1/app/routes/app_pages.dart';
 
@@ -24,7 +24,7 @@ class DashboardController extends GetxController {
   final RxList<Product> allProducts = RxList<Product>([]);
   final RxList<Product> lowOnStockProducts = RxList<Product>([]);
   final RxList<Product> outOfStockProducts = RxList<Product>([]);
-  final RxList<Order> todaysOrders = RxList<Order>([]);
+  final RxList<o.Order> todaysOrders = RxList<o.Order>([]);
   final dashboardStats = Rx<DashboardStats>(
     DashboardStats(
       totalProductCount: 0, // add or delete a product
@@ -32,7 +32,7 @@ class DashboardController extends GetxController {
           0, // when product is bought or editted to a lower quantity
       outOfStockProductsCount:
           0, // when product is bought or editted to a lower quantity such that quantity ==0
-      dailySales: 0, // when an order is confirmed
+      dailySales: 0, // when an o.Order is confirmed
     ),
   );
 
@@ -76,8 +76,8 @@ class DashboardController extends GetxController {
         // STEP 1: set allorders List
         todaysOrders(
           event.docs
-              .map((doc) => Order.fromJson({...doc.data(), "id": doc.id}))
-              .where((Order order) {
+              .map((doc) => o.Order.fromJson({...doc.data(), "id": doc.id}))
+              .where((o.Order order) {
             Timestamp? createdAt = order.createdAt;
 
             final now = DateTime.now();
@@ -155,7 +155,7 @@ class DashboardController extends GetxController {
   void setDailySales() {
     double dailySales = 0;
 
-    for (Order order in todaysOrders) {
+    for (o.Order order in todaysOrders) {
       dailySales += order.total;
     }
 
