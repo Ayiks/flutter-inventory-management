@@ -21,16 +21,19 @@ class LoginView extends GetView<LoginController> {
                   horizontal: Dimensions.width20,
                   vertical: Dimensions.height10),
               children: [
-                Center(
-                    child: Text(
-                  'Welcome',
+                Image.asset(
+                  'assets/login_icon.gif',
+                  height: 150,
+                ),
+                Text(
+                  'Login',
                   style: TextStyle(
                     fontSize: Dimensions.font20 * 2,
                     fontWeight: FontWeight.bold,
                   ),
-                )),
+                ),
                 SizedBox(
-                  height: Dimensions.height45,
+                  height: Dimensions.height20,
                 ),
                 TextFormField(
                   // controller: _emailController,
