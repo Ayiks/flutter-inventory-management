@@ -39,17 +39,20 @@ class SubmitButtonController extends GetxController {
 class PrimaryButton extends GetView<SubmitButtonController> {
   final void Function() onPressed;
   final String text;
+  final Color? color;
 
   const PrimaryButton({
     super.key,
     required this.onPressed,
     required this.text,
+    this.color,
   });
 
   @override
   Widget build(BuildContext context) {
     return Obx(
       () => OutlinedButton(
+        style: TextButton.styleFrom(backgroundColor: color),
         onPressed: controller.isFormValid &&
                 controller.buttonState != ButtonState.loading
             ? () => onPressed()
