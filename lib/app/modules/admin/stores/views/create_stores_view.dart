@@ -19,56 +19,63 @@ class CreateStoresView extends GetView<CreateStoresController> {
       body: SingleChildScrollView(
         padding: EdgeInsets.all(Dimensions.height15),
         child: Form(
+            key: controller.formKey,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
-          children: [
-            TextFormField(
-              keyboardType: TextInputType.text,
-              decoration: const InputDecoration(
-                labelText: 'Store Name',
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(
-                  Icons.store_outlined,
-                  color: Colors.red,
+              children: [
+                TextFormField(
+                  keyboardType: TextInputType.text,
+                  decoration: const InputDecoration(
+                    labelText: 'Store Name',
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(
+                      Icons.store_outlined,
+                      color: Colors.red,
+                    ),
+                  ),
+                  onChanged: controller.setStoreName,
+                  validator: controller.validateStoreName,
                 ),
-              ),
-            ),
-            SizedBox(
-              height: Dimensions.height20,
-            ),
-            TextFormField(
-              keyboardType: TextInputType.text,
-              decoration: const InputDecoration(
-                labelText: 'Location',
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(
-                  Icons.location_on_outlined,
-                  color: Colors.green,
+                SizedBox(
+                  height: Dimensions.height20,
                 ),
-              ),
-            ),
-            SizedBox(
-              height: Dimensions.height20,
-            ),
-            TextFormField(
-              maxLines: 3,
-              keyboardType: TextInputType.streetAddress,
-              decoration: const InputDecoration(
-                labelText: 'Address',
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(
-                  Icons.location_city_outlined,
+                TextFormField(
+                  keyboardType: TextInputType.text,
+                  decoration: const InputDecoration(
+                    labelText: 'Location',
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(
+                      Icons.location_on_outlined,
+                      color: Colors.green,
+                    ),
+                  ),
+                  onChanged: controller.setStoreLocation,
+                  validator: controller.validateStoreLocation,
+                ),
+                SizedBox(
+                  height: Dimensions.height20,
+                ),
+                TextFormField(
+                  maxLines: 3,
+                  keyboardType: TextInputType.streetAddress,
+                  decoration: const InputDecoration(
+                    labelText: 'Address',
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(
+                      Icons.location_city_outlined,
+                      color: Colors.blue,
+                    ),
+                  ),
+                  onChanged: controller.setStoreAddress,
+                ),
+                SizedBox(height: Dimensions.height45),
+                PrimaryButton(
+                  onPressed: controller.createStore,
+                  text: 'Save',
                   color: Colors.blue,
-                ),
-              ),
-            ),
-            SizedBox(height: Dimensions.height45),
-            PrimaryButton(
-              onPressed: () {},
-              text: 'Save',
-              color: Colors.blue,
-            )
-          ],
-        )),
+                )
+              ],
+            )),
       ),
     );
   }

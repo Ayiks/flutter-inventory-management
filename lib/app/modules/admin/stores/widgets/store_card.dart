@@ -3,8 +3,11 @@ import 'package:inventory_1/app/modules/admin/stores/widgets/store_info.dart';
 import 'package:inventory_1/app/utils/dimmension.dart';
 
 class StoreCard extends StatelessWidget {
+  final String title;
+
   const StoreCard({
     super.key,
+    required this.title,
   });
 
   @override

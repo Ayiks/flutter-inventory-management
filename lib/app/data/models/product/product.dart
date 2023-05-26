@@ -17,10 +17,10 @@ class Product with _$Product {
     @Default(0) double quantity,
     @Default("other") String? unit,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-        Timestamp? createdAt,
+    Timestamp? createdAt,
     required double lowOnStock,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-        Timestamp? updateAt,
+    Timestamp? updateAt,
   }) = _Product;
 
   factory Product.fromJson(Map<String, dynamic> json) =>
@@ -37,7 +37,7 @@ class ProductDTO with _$ProductDTO {
     @Default("other") String? unit,
     required double lowOnStock,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-        Timestamp? updatedAt,
+    Timestamp? updatedAt,
   }) = _ProductDTO;
 
   factory ProductDTO.fromJson(Map<String, dynamic> json) =>
