@@ -26,9 +26,8 @@ mixin _$Store {
   String? get address => throw _privateConstructorUsedError;
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp? get createdAt => throw _privateConstructorUsedError;
-  double get lowOnStock => throw _privateConstructorUsedError;
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp? get updateAt => throw _privateConstructorUsedError;
+  Timestamp? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,9 +46,8 @@ abstract class $StoreCopyWith<$Res> {
       String? address,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt,
-      double lowOnStock,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp? updateAt});
+          Timestamp? updatedAt});
 }
 
 /// @nodoc
@@ -70,8 +68,7 @@ class _$StoreCopyWithImpl<$Res, $Val extends Store>
     Object? location = null,
     Object? address = freezed,
     Object? createdAt = freezed,
-    Object? lowOnStock = null,
-    Object? updateAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -94,13 +91,9 @@ class _$StoreCopyWithImpl<$Res, $Val extends Store>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as Timestamp?,
-      lowOnStock: null == lowOnStock
-          ? _value.lowOnStock
-          : lowOnStock // ignore: cast_nullable_to_non_nullable
-              as double,
-      updateAt: freezed == updateAt
-          ? _value.updateAt
-          : updateAt // ignore: cast_nullable_to_non_nullable
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
               as Timestamp?,
     ) as $Val);
   }
@@ -119,9 +112,8 @@ abstract class _$$_StoreCopyWith<$Res> implements $StoreCopyWith<$Res> {
       String? address,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt,
-      double lowOnStock,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp? updateAt});
+          Timestamp? updatedAt});
 }
 
 /// @nodoc
@@ -138,8 +130,7 @@ class __$$_StoreCopyWithImpl<$Res> extends _$StoreCopyWithImpl<$Res, _$_Store>
     Object? location = null,
     Object? address = freezed,
     Object? createdAt = freezed,
-    Object? lowOnStock = null,
-    Object? updateAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$_Store(
       id: null == id
@@ -162,13 +153,9 @@ class __$$_StoreCopyWithImpl<$Res> extends _$StoreCopyWithImpl<$Res, _$_Store>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as Timestamp?,
-      lowOnStock: null == lowOnStock
-          ? _value.lowOnStock
-          : lowOnStock // ignore: cast_nullable_to_non_nullable
-              as double,
-      updateAt: freezed == updateAt
-          ? _value.updateAt
-          : updateAt // ignore: cast_nullable_to_non_nullable
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
               as Timestamp?,
     ));
   }
@@ -184,9 +171,8 @@ class _$_Store implements _Store {
       this.address,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           this.createdAt,
-      required this.lowOnStock,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          this.updateAt});
+          this.updatedAt});
 
   factory _$_Store.fromJson(Map<String, dynamic> json) =>
       _$$_StoreFromJson(json);
@@ -203,14 +189,12 @@ class _$_Store implements _Store {
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   final Timestamp? createdAt;
   @override
-  final double lowOnStock;
-  @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  final Timestamp? updateAt;
+  final Timestamp? updatedAt;
 
   @override
   String toString() {
-    return 'Store(id: $id, name: $name, location: $location, address: $address, createdAt: $createdAt, lowOnStock: $lowOnStock, updateAt: $updateAt)';
+    return 'Store(id: $id, name: $name, location: $location, address: $address, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -225,16 +209,14 @@ class _$_Store implements _Store {
             (identical(other.address, address) || other.address == address) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
-            (identical(other.lowOnStock, lowOnStock) ||
-                other.lowOnStock == lowOnStock) &&
-            (identical(other.updateAt, updateAt) ||
-                other.updateAt == updateAt));
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, location, address,
-      createdAt, lowOnStock, updateAt);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, location, address, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -258,9 +240,8 @@ abstract class _Store implements Store {
       final String? address,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           final Timestamp? createdAt,
-      required final double lowOnStock,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          final Timestamp? updateAt}) = _$_Store;
+          final Timestamp? updatedAt}) = _$_Store;
 
   factory _Store.fromJson(Map<String, dynamic> json) = _$_Store.fromJson;
 
@@ -276,10 +257,8 @@ abstract class _Store implements Store {
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp? get createdAt;
   @override
-  double get lowOnStock;
-  @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp? get updateAt;
+  Timestamp? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$_StoreCopyWith<_$_Store> get copyWith =>
@@ -296,7 +275,7 @@ mixin _$StoreDTO {
   String get location => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp? get updatedAt => throw _privateConstructorUsedError;
+  Timestamp? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -314,7 +293,7 @@ abstract class $StoreDTOCopyWith<$Res> {
       String location,
       String? address,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp? updatedAt});
+          Timestamp? createdAt});
 }
 
 /// @nodoc
@@ -333,7 +312,7 @@ class _$StoreDTOCopyWithImpl<$Res, $Val extends StoreDTO>
     Object? name = null,
     Object? location = null,
     Object? address = freezed,
-    Object? updatedAt = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -348,9 +327,9 @@ class _$StoreDTOCopyWithImpl<$Res, $Val extends StoreDTO>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
-      updatedAt: freezed == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as Timestamp?,
     ) as $Val);
   }
@@ -368,7 +347,7 @@ abstract class _$$_StoreDTOCopyWith<$Res> implements $StoreDTOCopyWith<$Res> {
       String location,
       String? address,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp? updatedAt});
+          Timestamp? createdAt});
 }
 
 /// @nodoc
@@ -385,7 +364,7 @@ class __$$_StoreDTOCopyWithImpl<$Res>
     Object? name = null,
     Object? location = null,
     Object? address = freezed,
-    Object? updatedAt = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_$_StoreDTO(
       name: null == name
@@ -400,9 +379,9 @@ class __$$_StoreDTOCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
-      updatedAt: freezed == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as Timestamp?,
     ));
   }
@@ -416,7 +395,7 @@ class _$_StoreDTO implements _StoreDTO {
       required this.location,
       this.address,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          this.updatedAt});
+          this.createdAt});
 
   factory _$_StoreDTO.fromJson(Map<String, dynamic> json) =>
       _$$_StoreDTOFromJson(json);
@@ -429,11 +408,11 @@ class _$_StoreDTO implements _StoreDTO {
   final String? address;
   @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  final Timestamp? updatedAt;
+  final Timestamp? createdAt;
 
   @override
   String toString() {
-    return 'StoreDTO(name: $name, location: $location, address: $address, updatedAt: $updatedAt)';
+    return 'StoreDTO(name: $name, location: $location, address: $address, createdAt: $createdAt)';
   }
 
   @override
@@ -445,14 +424,14 @@ class _$_StoreDTO implements _StoreDTO {
             (identical(other.location, location) ||
                 other.location == location) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, name, location, address, updatedAt);
+      Object.hash(runtimeType, name, location, address, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -474,7 +453,7 @@ abstract class _StoreDTO implements StoreDTO {
       required final String location,
       final String? address,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          final Timestamp? updatedAt}) = _$_StoreDTO;
+          final Timestamp? createdAt}) = _$_StoreDTO;
 
   factory _StoreDTO.fromJson(Map<String, dynamic> json) = _$_StoreDTO.fromJson;
 
@@ -486,7 +465,7 @@ abstract class _StoreDTO implements StoreDTO {
   String? get address;
   @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp? get updatedAt;
+  Timestamp? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_StoreDTOCopyWith<_$_StoreDTO> get copyWith =>

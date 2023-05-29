@@ -14,9 +14,8 @@ class Store with _$Store {
     String? address,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
     Timestamp? createdAt,
-    required double lowOnStock,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-    Timestamp? updateAt,
+    Timestamp? updatedAt,
   }) = _Store;
 
   factory Store.fromJson(Map<String, dynamic> json) => _$StoreFromJson(json);
@@ -29,7 +28,7 @@ class StoreDTO with _$StoreDTO {
     required String location,
     String? address,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-    Timestamp? updatedAt,
+    Timestamp? createdAt,
   }) = _StoreDTO;
 
   factory StoreDTO.fromJson(Map<String, dynamic> json) =>

@@ -12,8 +12,7 @@ _$_Store _$$_StoreFromJson(Map<String, dynamic> json) => _$_Store(
       location: json['location'] as String,
       address: json['address'] as String?,
       createdAt: timestampFromJson(json['createdAt']),
-      lowOnStock: (json['lowOnStock'] as num).toDouble(),
-      updateAt: timestampFromJson(json['updateAt']),
+      updatedAt: timestampFromJson(json['updatedAt']),
     );
 
 Map<String, dynamic> _$$_StoreToJson(_$_Store instance) => <String, dynamic>{
@@ -22,15 +21,14 @@ Map<String, dynamic> _$$_StoreToJson(_$_Store instance) => <String, dynamic>{
       'location': instance.location,
       'address': instance.address,
       'createdAt': timestampToJson(instance.createdAt),
-      'lowOnStock': instance.lowOnStock,
-      'updateAt': timestampToJson(instance.updateAt),
+      'updatedAt': timestampToJson(instance.updatedAt),
     };
 
 _$_StoreDTO _$$_StoreDTOFromJson(Map<String, dynamic> json) => _$_StoreDTO(
       name: json['name'] as String,
       location: json['location'] as String,
       address: json['address'] as String?,
-      updatedAt: timestampFromJson(json['updatedAt']),
+      createdAt: timestampFromJson(json['createdAt']),
     );
 
 Map<String, dynamic> _$$_StoreDTOToJson(_$_StoreDTO instance) =>
@@ -38,5 +36,5 @@ Map<String, dynamic> _$$_StoreDTOToJson(_$_StoreDTO instance) =>
       'name': instance.name,
       'location': instance.location,
       'address': instance.address,
-      'updatedAt': timestampToJson(instance.updatedAt),
+      'createdAt': timestampToJson(instance.createdAt),
     };
