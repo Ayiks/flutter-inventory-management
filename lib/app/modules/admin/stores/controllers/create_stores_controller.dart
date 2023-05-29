@@ -21,14 +21,14 @@ class CreateStoresController extends GetxController {
       Rx<StoreDTO>(StoreDTO(name: '', location: '', address: ''));
   StoreDTO get storeDTO => _storeDTO.value;
 
-  late Worker _worker;
+  // late Worker _worker;
   @override
   void onInit() {
     super.onInit();
     formKey = GlobalKey<FormState>();
-    _worker = ever(_storeDTO, (storeDTO) {
-      _submitButtonController.isFormValid = formKey.currentState!.validate();
-    });
+    // _worker = ever(_storeDTO, (storeDTO) {
+    //   _submitButtonController.isFormValid = formKey.currentState!.validate();
+    // });
   }
 
   void setStoreName(String value) {
