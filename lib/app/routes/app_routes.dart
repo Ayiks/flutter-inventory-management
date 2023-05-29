@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 part of 'app_pages.dart';
 // DO NOT EDIT. This is code generated via package:get_cli/get_cli.dart
 
@@ -24,6 +26,7 @@ abstract class Routes {
   static const FORGOR_PASSWORD = _Paths.LOGIN + _Paths.FORGOR_PASSWORD;
   static const STORES = _Paths.STORES;
   static const CREATE_STORES = _Paths.STORES + _Paths.CREATE_STORES;
+  static const EDIT_STORE = _Paths.STORES + _Paths.EDIT_STORE;
 }
 
 abstract class _Paths {
@@ -47,5 +50,6 @@ abstract class _Paths {
   static const CHECKOUT = '/checkout';
   static const FORGOR_PASSWORD = '/forgor-password';
   static const STORES = '/stores';
-  static const CREATE_STORES = '/create-stores';
+  static const CREATE_STORES = '/store/create-stores';
+  static const EDIT_STORE = '/store/edit-store';
 }
