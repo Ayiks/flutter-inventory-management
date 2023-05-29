@@ -30,7 +30,7 @@ mixin _$Product {
   Timestamp? get createdAt => throw _privateConstructorUsedError;
   double get lowOnStock => throw _privateConstructorUsedError;
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp? get updateAt => throw _privateConstructorUsedError;
+  Timestamp? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,7 +53,7 @@ abstract class $ProductCopyWith<$Res> {
           Timestamp? createdAt,
       double lowOnStock,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp? updateAt});
+          Timestamp? updatedAt});
 }
 
 /// @nodoc
@@ -77,7 +77,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? unit = freezed,
     Object? createdAt = freezed,
     Object? lowOnStock = null,
-    Object? updateAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -112,9 +112,9 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.lowOnStock
           : lowOnStock // ignore: cast_nullable_to_non_nullable
               as double,
-      updateAt: freezed == updateAt
-          ? _value.updateAt
-          : updateAt // ignore: cast_nullable_to_non_nullable
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
               as Timestamp?,
     ) as $Val);
   }
@@ -138,7 +138,7 @@ abstract class _$$_ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
           Timestamp? createdAt,
       double lowOnStock,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp? updateAt});
+          Timestamp? updatedAt});
 }
 
 /// @nodoc
@@ -159,7 +159,7 @@ class __$$_ProductCopyWithImpl<$Res>
     Object? unit = freezed,
     Object? createdAt = freezed,
     Object? lowOnStock = null,
-    Object? updateAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$_Product(
       id: null == id
@@ -194,9 +194,9 @@ class __$$_ProductCopyWithImpl<$Res>
           ? _value.lowOnStock
           : lowOnStock // ignore: cast_nullable_to_non_nullable
               as double,
-      updateAt: freezed == updateAt
-          ? _value.updateAt
-          : updateAt // ignore: cast_nullable_to_non_nullable
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
               as Timestamp?,
     ));
   }
@@ -216,7 +216,7 @@ class _$_Product with DiagnosticableTreeMixin implements _Product {
           this.createdAt,
       required this.lowOnStock,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          this.updateAt});
+          this.updatedAt});
 
   factory _$_Product.fromJson(Map<String, dynamic> json) =>
       _$$_ProductFromJson(json);
@@ -242,11 +242,11 @@ class _$_Product with DiagnosticableTreeMixin implements _Product {
   final double lowOnStock;
   @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  final Timestamp? updateAt;
+  final Timestamp? updatedAt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Product(id: $id, name: $name, type: $type, price: $price, quantity: $quantity, unit: $unit, createdAt: $createdAt, lowOnStock: $lowOnStock, updateAt: $updateAt)';
+    return 'Product(id: $id, name: $name, type: $type, price: $price, quantity: $quantity, unit: $unit, createdAt: $createdAt, lowOnStock: $lowOnStock, updatedAt: $updatedAt)';
   }
 
   @override
@@ -262,7 +262,7 @@ class _$_Product with DiagnosticableTreeMixin implements _Product {
       ..add(DiagnosticsProperty('unit', unit))
       ..add(DiagnosticsProperty('createdAt', createdAt))
       ..add(DiagnosticsProperty('lowOnStock', lowOnStock))
-      ..add(DiagnosticsProperty('updateAt', updateAt));
+      ..add(DiagnosticsProperty('updatedAt', updatedAt));
   }
 
   @override
@@ -281,14 +281,14 @@ class _$_Product with DiagnosticableTreeMixin implements _Product {
                 other.createdAt == createdAt) &&
             (identical(other.lowOnStock, lowOnStock) ||
                 other.lowOnStock == lowOnStock) &&
-            (identical(other.updateAt, updateAt) ||
-                other.updateAt == updateAt));
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, type, price, quantity,
-      unit, createdAt, lowOnStock, updateAt);
+      unit, createdAt, lowOnStock, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -316,7 +316,7 @@ abstract class _Product implements Product {
           final Timestamp? createdAt,
       required final double lowOnStock,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          final Timestamp? updateAt}) = _$_Product;
+          final Timestamp? updatedAt}) = _$_Product;
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$_Product.fromJson;
 
@@ -339,7 +339,7 @@ abstract class _Product implements Product {
   double get lowOnStock;
   @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp? get updateAt;
+  Timestamp? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$_ProductCopyWith<_$_Product> get copyWith =>

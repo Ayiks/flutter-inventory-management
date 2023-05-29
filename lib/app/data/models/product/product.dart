@@ -20,7 +20,7 @@ class Product with _$Product {
     Timestamp? createdAt,
     required double lowOnStock,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-    Timestamp? updateAt,
+    Timestamp? updatedAt,
   }) = _Product;
 
   factory Product.fromJson(Map<String, dynamic> json) =>
