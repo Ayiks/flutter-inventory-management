@@ -4,11 +4,9 @@ import 'package:inventory_1/app/utils/dimmension.dart';
 
 class StoreCard extends StatelessWidget {
   final String title;
+  final void Function() onPressed;
 
-  const StoreCard({
-    super.key,
-    required this.title,
-  });
+  const StoreCard({super.key, required this.title, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +17,15 @@ class StoreCard extends StatelessWidget {
       decoration: BoxDecoration(
           border: Border.all(),
           borderRadius: const BorderRadius.all(Radius.circular(30))),
-      child: const Column(
+      child: Column(
         children: [
-          const ListTile(
-            title: Text('Cold Store'),
-            trailing: Icon(Icons.more_horiz),
+          ListTile(
+            title: Text(title),
+            trailing: GestureDetector(
+                onTap: onPressed, child: const Icon(Icons.more_horiz)),
           ),
           const Divider(),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               StoreInfo(
