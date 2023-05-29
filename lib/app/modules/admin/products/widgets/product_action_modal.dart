@@ -1,9 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:inventory_1/app/data/models/product/product.dart';
 import 'package:inventory_1/app/modules/admin/products/widgets/confirm_product_delete_alert.dart';
 import 'package:inventory_1/app/routes/app_pages.dart';
@@ -12,7 +8,7 @@ import 'package:inventory_1/app/utils/dimmension.dart';
 class ProductActionModal extends StatelessWidget {
   final Product product;
 
-  ProductActionModal({
+  const ProductActionModal({
     Key? key,
     required this.product,
   }) : super(key: key);
@@ -21,7 +17,7 @@ class ProductActionModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       elevation: 30,
-      content: Container(
+      content: SizedBox(
         height: Dimensions.height20 * 5,
         child: Column(
           children: [
@@ -48,12 +44,12 @@ class ProductActionModal extends StatelessWidget {
                         style: TextStyle(
                             fontSize: Dimensions.font16,
                             fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 22, 90, 145)),
+                            color: const Color.fromARGB(255, 22, 90, 145)),
                       ),
                       Icon(
                         Icons.edit_note_rounded,
                         size: Dimensions.iconSize24,
-                        color: Color.fromARGB(225, 22, 90, 145),
+                        color: const Color.fromARGB(225, 22, 90, 145),
                       )
                     ],
                   ),
