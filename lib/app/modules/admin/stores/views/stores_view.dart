@@ -44,9 +44,13 @@ class StoresView extends GetView<StoresController> {
                   ),
                 )
               : ListView.separated(
+                  padding: EdgeInsets.all(Dimensions.height15),
                   itemBuilder: ((context, index) {
                     Store store = controller.storeList[index];
                     return StoreCard(
+                      onPressed: () {
+                        controller.showAlertDialog(store: store);
+                      },
                       title: store.name,
                     );
                   }),
