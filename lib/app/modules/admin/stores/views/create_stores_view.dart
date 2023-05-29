@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:inventory_1/app/utils/dimmension.dart';
-import 'package:inventory_1/app/widgets/buttons.dart';
 
 import '../controllers/create_stores_controller.dart';
 
@@ -69,11 +68,28 @@ class CreateStoresView extends GetView<CreateStoresController> {
                   onChanged: controller.setStoreAddress,
                 ),
                 SizedBox(height: Dimensions.height45),
-                PrimaryButton(
-                  onPressed: controller.createStore,
-                  text: 'Save',
-                  color: Colors.blue,
-                )
+                GestureDetector(
+                  onTap: () {
+                    controller.createStore();
+                  },
+                  child: Container(
+                    height: Dimensions.height10 * 5,
+                    width: Dimensions.width20 * 5,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: const Color.fromARGB(255, 9, 82, 142)),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 30, top: 15),
+                      child: Text(
+                        'Save',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: Dimensions.font16,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             )),
       ),
