@@ -71,7 +71,7 @@ class AllProdcutsView extends GetView<AllProductsController> {
                 ),
                 child: Container(
                   height: Dimensions.height30,
-                  decoration: BoxDecoration(color: Colors.black54),
+                  decoration: const BoxDecoration(color: Colors.black54),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
