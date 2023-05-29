@@ -11,8 +11,10 @@ import '../modules/admin/products/bindings/edit_product_binding.dart';
 import '../modules/admin/products/views/add_product_view.dart';
 import '../modules/admin/products/views/all_products_view.dart';
 import '../modules/admin/products/views/edit_product_view.dart';
-import '../modules/admin/stores/bindings/stores_binding.dart';
 import '../modules/admin/stores/bindings/create_stores_binding.dart';
+import '../modules/admin/stores/bindings/stores_binding.dart';
+import '../modules/admin/stores/bindings/edit_store_binding.dart';
+import '../modules/admin/stores/views/edit_store_view.dart';
 import '../modules/admin/stores/views/create_stores_view.dart';
 import '../modules/admin/stores/views/stores_view.dart';
 import '../modules/admin/users/bindings/add_user_binding.dart';
@@ -39,6 +41,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
+  // ignore: constant_identifier_names
   static const INITIAL = Routes.LOGIN;
 
   static final routes = [
@@ -79,7 +82,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.EDIT_PRODUCT,
-      page: () => EditProductView(),
+      page: () => const EditProductView(),
       binding: EditProductBinding(),
     ),
     GetPage(
@@ -133,6 +136,11 @@ class AppPages {
           name: _Paths.CREATE_STORES,
           page: () => const CreateStoresView(),
           binding: CreateStoresBinding(),
+        ),
+        GetPage(
+          name: _Paths.EDIT_STORE,
+          page: () => const EditStoreView(),
+          binding: EditStoreBinding(),
         ),
       ],
     ),
