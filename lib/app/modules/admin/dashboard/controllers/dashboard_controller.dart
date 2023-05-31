@@ -163,12 +163,27 @@ class DashboardController extends GetxController {
   }
 
   void updateDashbaordStats() {
-    print("dashboard stats updated: ${dashboardStats.toJson()}");
+    // print("dashboard stats updated: ${dashboardStats.toJson()}");
 
     FirebaseFirestore.instance
         .collection('dashboard')
         .doc('stats')
         .update(dashboardStats.toJson());
+
+    //       FirebaseFirestore.instance
+    //     .collection('dashboard')
+    //     .doc(store.id)
+    //     .set({
+    //       'store_id': store.id,
+    //     });
+
+    // // Update the dashboard stats.
+    // FirebaseFirestore.instance
+    //     .collection('dashboard')
+    //     .doc(store.id)
+    //     .update({
+    //       'stats': dashboardStats.toJson(),
+    //     });
   }
 
   @override
