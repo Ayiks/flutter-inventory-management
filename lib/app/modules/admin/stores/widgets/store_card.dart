@@ -5,8 +5,15 @@ import 'package:inventory_1/app/utils/dimmension.dart';
 class StoreCard extends StatelessWidget {
   final String title;
   final void Function() onPressed;
+  final String numberOfProducts;
+  final String valueOfProducts;
 
-  const StoreCard({super.key, required this.title, required this.onPressed});
+  const StoreCard(
+      {super.key,
+      required this.title,
+      required this.onPressed,
+      required this.numberOfProducts,
+      required this.valueOfProducts});
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +32,14 @@ class StoreCard extends StatelessWidget {
                 onTap: onPressed, child: const Icon(Icons.more_horiz)),
           ),
           const Divider(),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               StoreInfo(
                 title: 'Products',
-                subtitle: '200',
+                subtitle: numberOfProducts,
               ),
-              StoreInfo(title: 'Total Cost', subtitle: 'Ghc 5,000'),
+              StoreInfo(title: 'Total Stock Value', subtitle: valueOfProducts),
               StoreInfo(title: 'Total Cost', subtitle: 'Ghc 5,000')
             ],
           )
