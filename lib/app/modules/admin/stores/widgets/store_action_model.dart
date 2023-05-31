@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventory_1/app/data/models/store/store.dart';
+import 'package:inventory_1/app/modules/admin/stores/widgets/confirm_store_delete.dart';
 import 'package:inventory_1/app/routes/app_pages.dart';
 import 'package:inventory_1/app/utils/dimmension.dart';
 
@@ -56,7 +57,7 @@ class StoreActionModal extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () async {
-                // Get.dialog(ConfirmProductDeleteAlertDialog(product: product));
+                Get.dialog(ConfirmStoreDeleteAlertDialog(store: store));
               },
               child: Container(
                 height: Dimensions.height20 * 2,
