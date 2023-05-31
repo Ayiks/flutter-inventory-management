@@ -10,6 +10,7 @@ class DashboardStats with _$DashboardStats {
     required int lowOnStockProductsCount,
     required int outOfStockProductsCount,
     required double dailySales,
+    // required String storeId,
   }) = _DashboardStats;
 
   factory DashboardStats.fromJson(Map<String, dynamic> json) =>
