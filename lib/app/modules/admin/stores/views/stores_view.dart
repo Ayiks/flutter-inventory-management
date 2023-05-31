@@ -47,21 +47,22 @@ class StoresView extends GetView<StoresController> {
                   padding: EdgeInsets.all(Dimensions.height15),
                   itemBuilder: ((context, index) {
                     Store store = controller.storeList[index];
-                    return StoreCard(
-                      onPressed: () {
-                        controller.showAlertDialog(store: store);
-                      },
-                      title: store.name,
+                    return GestureDetector(
+                      onTap: () => Get.toNamed(Routes.DASHBOARD),
+                      child: StoreCard(
+                        onPressed: () {
+                          controller.showAlertDialog(store: store);
+                        },
+                        title: store.name,
+                        numberOfProducts: '${controller.products.length}',
+                        valueOfProducts: "Ghc ${controller.getQuantity(store)}",
+                      ),
                     );
                   }),
                   separatorBuilder: ((index, context) {
                     return const Divider();
                   }),
                   itemCount: controller.storeList.length))),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {},
-      //   child: Icon(Icons.add),
-      // ),
     );
   }
 }
