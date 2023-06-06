@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventory_1/app/data/models/product/product.dart';
+import 'package:inventory_1/app/data/models/store/store.dart';
 import 'package:inventory_1/app/widgets/buttons.dart';
 
 class AddProductController extends GetxController {
@@ -20,10 +21,19 @@ class AddProductController extends GetxController {
       Rx<ProductDTO>(ProductDTO(name: '', price: 0, lowOnStock: 0));
   ProductDTO get productDTO => _productDTO.value;
 
+  late final String selectedStoreId;
+
+  late Worker _worker;
+
   @override
   void onInit() {
     super.onInit();
     formKey = GlobalKey<FormState>();
+    // Retrieve the selected store ID from arguments
+    final arguments = Get.arguments;
+    if (arguments != null) {
+      selectedStoreId = arguments as String;
+    }
   }
 
   void setProductName(String value) {
@@ -88,7 +98,8 @@ class AddProductController extends GetxController {
 
         await _productCollection.doc().set({
           ...productDTO.toJson(),
-          "createdAt": FieldValue.serverTimestamp()
+          "createdAt": FieldValue.serverTimestamp(),
+          //field for store id
         }).then((_) {
           // set the button to success
           _submitButtonController.buttonState = ButtonState.success;
