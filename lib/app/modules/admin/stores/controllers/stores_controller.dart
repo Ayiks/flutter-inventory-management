@@ -85,6 +85,7 @@ class StoresController extends GetxController {
       //     doc.reference.delete();
       //   }
       // });
+      FirebaseFirestore.instance.collection('dashboard').doc(store.id).delete();
       Get.back();
       Get.back();
       Get.snackbar("Success", "Store was deleted successfully");
