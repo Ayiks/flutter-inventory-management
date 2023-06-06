@@ -89,3 +89,5 @@ class EditProductController extends GetxController {
     }
   }
 }
+ // Create the store_id field if it doesn't exist.
+  
