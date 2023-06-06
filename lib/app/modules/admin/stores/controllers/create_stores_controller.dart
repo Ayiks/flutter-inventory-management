@@ -62,27 +62,20 @@ class CreateStoresController extends GetxController {
     try {
       _submitButtonController.buttonState = ButtonState.loading;
       if (formKey.currentState!.validate()) {
-        await _storeCollection.doc().set({
+        var docRef = _storeCollection.doc();
+        await docRef.set({
           ...storeDTO.toJson(),
           "createdAt": FieldValue.serverTimestamp(),
-        }).then((_) {
-          _submitButtonController.buttonState = ButtonState.success;
-          Get.back();
-          Get.snackbar('Alert!', 'New Store Added');
-        }).catchError((onError) {
-          _submitButtonController.buttonState = ButtonState.error;
-
-          Get.snackbar('Error', 'Something went wrong... $onError',
-              backgroundColor: Colors.red);
-        }).timeout(
-          const Duration(seconds: 10),
-          onTimeout: () {
-            _submitButtonController.buttonState = ButtonState.error;
-
-            Get.snackbar(
-                "Error", "Please check your internet connection and try again");
-          },
-        );
+        });
+        await FirebaseFirestore.instance
+            .collection('dashboard')
+            .doc(docRef.id)
+            .set({
+          'storeId': docRef.id,
+        });
+        _submitButtonController.buttonState = ButtonState.success;
+        Get.back();
+        Get.snackbar('Alert!', 'New Store Added');
       }
     } catch (e) {
       _submitButtonController.buttonState = ButtonState.error;
