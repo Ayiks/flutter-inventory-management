@@ -35,7 +35,7 @@ class ConfirmStoreDeleteAlertDialog extends GetView<StoresController> {
         TextButton(
             onPressed: () {
               // TODO: complete confirmation.
-              // controller.onDeleteProductConfirmed(product);
+              controller.onDeleteStoreConfirmed(store);
             },
             child: Text(
               'Yes',
