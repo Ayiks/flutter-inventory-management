@@ -42,6 +42,8 @@ class AddProductView extends GetView<AddProductController> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          Text(
+                              'This id the store id ${controller.selectedStoreId}'),
                           Icon(
                             Icons.type_specimen,
                             color: Colors.red,
