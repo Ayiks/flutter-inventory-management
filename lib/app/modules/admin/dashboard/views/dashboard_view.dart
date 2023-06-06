@@ -47,7 +47,7 @@ class DashboardView extends GetView<DashboardController> {
           shrinkWrap: true,
           children: [
             Text(
-              'Stats',
+              'Stats for ${controller.selectedStoreId}',
               style: TextStyle(
                   fontWeight: FontWeight.bold, fontSize: Dimensions.font26),
             ),
@@ -74,7 +74,7 @@ class DashboardView extends GetView<DashboardController> {
                           label: 'Total Stock ',
                           value: controller.dashboardStats().totalProductCount,
                           onTap: () {
-                            print("tapped");
+                            // print("tapped");
                             Get.toNamed(Routes.ALL_PRODUCTS);
                           }),
                     ],
@@ -134,12 +134,12 @@ class DashboardView extends GetView<DashboardController> {
                         Icon(
                           Icons.history,
                           size: Dimensions.iconSize24,
-                          color: Color.fromARGB(255, 11, 72, 122),
+                          color: const Color.fromARGB(255, 11, 72, 122),
                         ),
                         Text(
                           'Transaction History',
                           style: TextStyle(
-                              color: Color.fromARGB(255, 11, 72, 122),
+                              color: const Color.fromARGB(255, 11, 72, 122),
                               fontSize: Dimensions.font16),
                         )
                       ],
@@ -147,7 +147,7 @@ class DashboardView extends GetView<DashboardController> {
                     Icon(
                       Icons.chevron_right,
                       size: Dimensions.iconSize24,
-                      color: Color.fromARGB(255, 11, 72, 122),
+                      color: const Color.fromARGB(255, 11, 72, 122),
                     )
                   ],
                 ),
@@ -166,11 +166,12 @@ class DashboardView extends GetView<DashboardController> {
                 ),
                 GestureDetector(
                   onTap: (() {
-                    Get.toNamed(Routes.NEW_PRODUCT);
+                    Get.toNamed(Routes.NEW_PRODUCT,
+                        arguments: controller.selectedStoreId);
                   }),
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 11, 72, 122),
+                        color: const Color.fromARGB(255, 11, 72, 122),
                         borderRadius: BorderRadius.circular(10)),
                     height: Dimensions.height20 * 2,
                     width: Dimensions.width30 * 5,
@@ -286,7 +287,7 @@ class DashboardView extends GetView<DashboardController> {
                 height: Dimensions.height30 * 2.5,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 11, 72, 122),
+                    color: const Color.fromARGB(255, 11, 72, 122),
                     borderRadius: BorderRadius.circular(10)),
                 child: Center(
                   child: Text(
