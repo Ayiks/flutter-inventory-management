@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventory_1/app/data/models/user_profile/user_profile.dart';
-import 'package:inventory_1/app/utils/helpers.dart';
 import 'package:inventory_1/app/widgets/buttons.dart';
 
 class AddUserController extends GetxController {
@@ -102,27 +100,24 @@ class AddUserController extends GetxController {
             .createUserWithEmailAndPassword(
                 email: userProfile.email, password: userPassword)
             .then((userCredential) async {
-          if (userCredential != null) {
-// get the user.id from the userCredential and save the profile to Firebase
-            await _userCollection.doc(userCredential.user!.uid).set({
-              ...userProfile.toJson(),
-              "password": userPassword,
-              "userId": userCredential.user!.uid,
-            }).then((_) {
-              // set the button to success
-              _submitButtonController.buttonState = ButtonState.success;
-              Get.back();
-              Get.snackbar("Success", "Person added successfully");
-            }).catchError((onError) {
-              _submitButtonController.buttonState = ButtonState.error;
-              Get.snackbar("Error", "Something went wrong... $onError");
-            }).timeout(const Duration(seconds: 10), onTimeout: () {
-              _submitButtonController.buttonState = ButtonState.error;
+          await _userCollection.doc(userCredential.user!.uid).set({
+            ...userProfile.toJson(),
+            "password": userPassword,
+            "userId": userCredential.user!.uid,
+          }).then((_) {
+            // set the button to success
+            _submitButtonController.buttonState = ButtonState.success;
+            Get.back();
+            Get.snackbar("Success", "Person added successfully");
+          }).catchError((onError) {
+            _submitButtonController.buttonState = ButtonState.error;
+            Get.snackbar("Error", "Something went wrong... $onError");
+          }).timeout(const Duration(seconds: 10), onTimeout: () {
+            _submitButtonController.buttonState = ButtonState.error;
 
-              Get.snackbar("Error",
-                  "Please check your internet connection and try again");
-            });
-          }
+            Get.snackbar(
+                "Error", "Please check your internet connection and try again");
+          });
         });
       }
     } catch (e) {
