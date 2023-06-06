@@ -28,6 +28,7 @@ class EditStoreController extends GetxController {
 
   @override
   void onClose() {
+    _worker.dispose();
     super.onClose();
   }
 
