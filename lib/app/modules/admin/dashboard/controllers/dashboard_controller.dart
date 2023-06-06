@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:inventory_1/app/data/models/dashboard_start/dashboard_stats.dart';
 import 'package:inventory_1/app/data/models/order/order.dart' as o;
 import 'package:inventory_1/app/data/models/product/product.dart';
+import 'package:inventory_1/app/data/models/store/store.dart';
 import 'package:inventory_1/app/routes/app_pages.dart';
 
 class DashboardController extends GetxController {
@@ -40,13 +41,48 @@ class DashboardController extends GetxController {
   List get recentProducts => _recentProducts;
   set recentProducts(List value) => _recentProducts.value = value;
 
+  // final RxString _selectedStoreId = ''.obs;
+  // String get selectedStoreId => _selectedStoreId.value;
+  // set selectedStoreId(String value) => _selectedStoreId.value = value;
+
+  // ignore: unused_field
+  // late Worker _worker;
+
+  final Rx<Store?> _store = Rx<Store?>(null);
+  Store? get store => _store.value;
+  set store(Store? value) => _store.value = value;
+
+  late final String selectedStoreId; // Variable to store the selected store ID
+
+  // Existing code...
+
+  void setStoreId(String storeId) {
+    selectedStoreId = storeId;
+  }
+
   @override
   void onInit() {
     super.onInit();
 
+    // _worker = ever<Store?>(_store, (store) {
+    //   if (store != null) {
+    //     print(store.name);
+    //     // selectedStoreId = store.id;
+    //   }
+    // });
+
+    // Retrieve the selected store ID from arguments
+    final arguments = Get.arguments;
+    if (arguments != null) {
+      selectedStoreId = arguments;
+    }
+
     // A listenert to update product stats
-    productStreamSubscription =
-        FirebaseFirestore.instance.collection('products').snapshots().listen(
+    productStreamSubscription = FirebaseFirestore.instance
+        .collection('products')
+        // .where("storeId", isEqualTo: store?.id)
+        .snapshots()
+        .listen(
       (event) {
         // STEP 1: set allProduct List
         allProducts(
@@ -114,7 +150,7 @@ class DashboardController extends GetxController {
 
     dashboardStreamSubscription = FirebaseFirestore.instance
         .collection('dashboard')
-        .doc('stats')
+        .doc('stat')
         .snapshots()
         .listen(
       (event) {
@@ -125,6 +161,13 @@ class DashboardController extends GetxController {
       },
       onError: (error) => print("Listen failed: $error"),
     );
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    //  TODO: Redirect if product
+    print("dashboardcontroller Products: $store");
   }
 
   void setTotalProductCount() {
@@ -163,27 +206,10 @@ class DashboardController extends GetxController {
   }
 
   void updateDashbaordStats() {
-    // print("dashboard stats updated: ${dashboardStats.toJson()}");
-
     FirebaseFirestore.instance
         .collection('dashboard')
         .doc('stats')
         .update(dashboardStats.toJson());
-
-    //       FirebaseFirestore.instance
-    //     .collection('dashboard')
-    //     .doc(store.id)
-    //     .set({
-    //       'store_id': store.id,
-    //     });
-
-    // // Update the dashboard stats.
-    // FirebaseFirestore.instance
-    //     .collection('dashboard')
-    //     .doc(store.id)
-    //     .update({
-    //       'stats': dashboardStats.toJson(),
-    //     });
   }
 
   @override
