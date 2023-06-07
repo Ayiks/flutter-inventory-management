@@ -29,11 +29,11 @@ class AddProductController extends GetxController {
   void onInit() {
     super.onInit();
     formKey = GlobalKey<FormState>();
-    // Retrieve the selected store ID from arguments
-    final arguments = Get.arguments;
-    if (arguments != null) {
-      selectedStoreId = arguments as String;
-    }
+    // // Retrieve the selected store ID from arguments
+    // final arguments = Get.arguments;
+    // if (arguments != null) {
+    //   selectedStoreId = arguments as String;
+    // }
   }
 
   void setProductName(String value) {

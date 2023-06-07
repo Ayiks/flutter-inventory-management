@@ -8,9 +8,11 @@ import 'package:inventory_1/app/data/models/dashboard_start/dashboard_stats.dart
 import 'package:inventory_1/app/data/models/order/order.dart' as o;
 import 'package:inventory_1/app/data/models/product/product.dart';
 import 'package:inventory_1/app/data/models/store/store.dart';
+import 'package:inventory_1/app/modules/admin/stores/controllers/stores_controller.dart';
 import 'package:inventory_1/app/routes/app_pages.dart';
 
 class DashboardController extends GetxController {
+  final StoresController storeController = Get.find<StoresController>();
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   late StreamSubscription<QuerySnapshot<Map<String, dynamic>>>
@@ -46,36 +48,28 @@ class DashboardController extends GetxController {
   // set selectedStoreId(String value) => _selectedStoreId.value = value;
 
   // ignore: unused_field
-  // late Worker _worker;
+  late Worker _worker;
 
   final Rx<Store?> _store = Rx<Store?>(null);
   Store? get store => _store.value;
   set store(Store? value) => _store.value = value;
 
-  late final String selectedStoreId; // Variable to store the selected store ID
-
-  // Existing code...
-
-  void setStoreId(String storeId) {
-    selectedStoreId = storeId;
-  }
-
+  late Map<String, dynamic> selectedStore = {};
   @override
   void onInit() {
     super.onInit();
 
-    // _worker = ever<Store?>(_store, (store) {
-    //   if (store != null) {
-    //     print(store.name);
-    //     // selectedStoreId = store.id;
-    //   }
-    // });
-
-    // Retrieve the selected store ID from arguments
     final arguments = Get.arguments;
     if (arguments != null) {
-      selectedStoreId = arguments;
+      selectedStore = arguments as Map<String, dynamic>;
     }
+
+    _worker = ever<Store?>(_store, (store) {
+      if (store != null) {
+        print(store.name);
+        // selectedStoreId = store.id;
+      }
+    });
 
     // A listenert to update product stats
     productStreamSubscription = FirebaseFirestore.instance
@@ -163,6 +157,9 @@ class DashboardController extends GetxController {
     );
   }
 
+  String get selectedStoreId => selectedStore['id'];
+  String get selectedStoreName => selectedStore?['name'];
+
   @override
   void onReady() {
     super.onReady();
@@ -215,6 +212,7 @@ class DashboardController extends GetxController {
   @override
   void onClose() async {
     super.onClose();
+    _worker.dispose();
     await productStreamSubscription.cancel();
     await orderStreamSubscription.cancel();
     await dashboardStreamSubscription.cancel();
