@@ -39,11 +39,20 @@ class AllProductsController extends GetxController {
   String get pageTitle => _pageTitle.value;
   set pageTitle(String value) => _pageTitle.value = value;
 
+  final RxString _storeID = ''.obs;
+  String get storeID => _storeID.value;
+  set storeID(String value) => _storeID.value = value;
+
   @override
   void onInit() {
+    final String storeId = Get.arguments;
+    storeID = storeId;
     // A listenert to update product stats
-    productStreamSubscription =
-        FirebaseFirestore.instance.collection('products').snapshots().listen(
+    productStreamSubscription = FirebaseFirestore.instance
+        .collection('products')
+        .where('storeId', isEqualTo: storeID)
+        .snapshots()
+        .listen(
       (event) {
         // STEP 1: set allProduct List
         _allProducts(

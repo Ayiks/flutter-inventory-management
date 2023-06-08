@@ -54,27 +54,30 @@ class DashboardController extends GetxController {
   Store? get store => _store.value;
   set store(Store? value) => _store.value = value;
 
-  late Map<String, dynamic> selectedStore = {};
+  final RxString _storeID = ''.obs;
+  String get storeID => _storeID.value;
+  set storeID(String value) => _storeID.value = value;
+
   @override
   void onInit() {
     super.onInit();
+    final String storeId = Get.arguments;
 
-    final arguments = Get.arguments;
-    if (arguments != null) {
-      selectedStore = arguments as Map<String, dynamic>;
-    }
+    storeID = storeId;
 
-    _worker = ever<Store?>(_store, (store) {
-      if (store != null) {
-        print(store.name);
-        // selectedStoreId = store.id;
-      }
-    });
+    // // Get the argument from the route
+    // Map<String, dynamic> jsonString = Get.arguments;
+
+    // // Convert the JSON string to an object
+    // Store store = Store.fromJson(jsonString);
+
+    // // Do something with the object
+    // storeName = store.name;
 
     // A listenert to update product stats
     productStreamSubscription = FirebaseFirestore.instance
         .collection('products')
-        // .where("storeId", isEqualTo: store?.id)
+        .where("storeId", isEqualTo: storeID)
         .snapshots()
         .listen(
       (event) {
@@ -157,8 +160,8 @@ class DashboardController extends GetxController {
     );
   }
 
-  String get selectedStoreId => selectedStore['id'];
-  String get selectedStoreName => selectedStore?['name'];
+  // String get selectedStoreId => selectedStore['id'];
+  // String get selectedStoreName => selectedStore?['name'];
 
   @override
   void onReady() {
@@ -175,7 +178,9 @@ class DashboardController extends GetxController {
   void setLowOnStockProductsCount() {
     lowOnStockProducts(
       allProducts
-          .where((product) => product.quantity <= product.lowOnStock)
+          .where((product) =>
+              product.quantity <= product.lowOnStock &&
+              product.storeId == storeID)
           .toList(),
     );
 
@@ -185,7 +190,10 @@ class DashboardController extends GetxController {
 
   void setOutOfStockProductsCount() {
     outOfStockProducts(
-      allProducts.where((product) => product.quantity == 0).toList(),
+      allProducts
+          .where(
+              (product) => product.quantity == 0 && product.storeId == storeID)
+          .toList(),
     );
 
     dashboardStats(dashboardStats.value
@@ -205,7 +213,7 @@ class DashboardController extends GetxController {
   void updateDashbaordStats() {
     FirebaseFirestore.instance
         .collection('dashboard')
-        .doc('stats')
+        .doc(storeID)
         .update(dashboardStats.toJson());
   }
 
