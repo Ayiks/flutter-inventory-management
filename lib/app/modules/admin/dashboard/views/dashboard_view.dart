@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:inventory_1/app/data/models/store/store.dart';
 import 'package:inventory_1/app/modules/admin/dashboard/controllers/dashboard_controller.dart';
 import 'package:inventory_1/app/modules/admin/dashboard/widgets/card_dash.dart';
 import 'package:inventory_1/app/routes/app_pages.dart';
@@ -42,15 +41,13 @@ class DashboardView extends GetView<DashboardController> {
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: Dimensions.width20, vertical: Dimensions.height20),
-        child: Obx(() {
-          Store? store = controller.store;
-          return ListView(
+          padding: EdgeInsets.symmetric(
+              horizontal: Dimensions.width20, vertical: Dimensions.height20),
+          child: ListView(
             shrinkWrap: true,
             children: [
               Text(
-                'Stats for ${controller.selectedStoreName}',
+                'Stats',
                 style: TextStyle(
                     fontWeight: FontWeight.bold, fontSize: Dimensions.font26),
               ),
@@ -79,7 +76,8 @@ class DashboardView extends GetView<DashboardController> {
                                 controller.dashboardStats().totalProductCount,
                             onTap: () {
                               // print("tapped");
-                              Get.toNamed(Routes.ALL_PRODUCTS);
+                              Get.toNamed(Routes.ALL_PRODUCTS,
+                                  arguments: controller.storeID);
                             }),
                       ],
                     ),
@@ -171,7 +169,8 @@ class DashboardView extends GetView<DashboardController> {
                   ),
                   GestureDetector(
                     onTap: (() {
-                      Get.toNamed(Routes.NEW_PRODUCT);
+                      Get.toNamed(Routes.NEW_PRODUCT,
+                          arguments: controller.storeID);
                     }),
                     child: Container(
                       decoration: BoxDecoration(
@@ -303,9 +302,7 @@ class DashboardView extends GetView<DashboardController> {
                 ),
               )
             ],
-          );
-        }),
-      ),
+          )),
       // bottomNavigationBar: GestureDetector(
       //   onTap: () => Get.toNamed(Routes.SHOPPING),
       //   child: Container(
