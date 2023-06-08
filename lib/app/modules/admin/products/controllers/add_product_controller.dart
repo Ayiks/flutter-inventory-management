@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventory_1/app/data/models/product/product.dart';
-import 'package:inventory_1/app/data/models/store/store.dart';
 import 'package:inventory_1/app/widgets/buttons.dart';
 
 class AddProductController extends GetxController {
@@ -17,23 +16,20 @@ class AddProductController extends GetxController {
 
   late final GlobalKey<FormState> formKey;
 
-  final Rx<ProductDTO> _productDTO =
-      Rx<ProductDTO>(ProductDTO(name: '', price: 0, lowOnStock: 0));
+  final Rx<ProductDTO> _productDTO = Rx<ProductDTO>(
+      ProductDTO(name: '', price: 0, lowOnStock: 0, storeId: ''));
   ProductDTO get productDTO => _productDTO.value;
 
-  late final String selectedStoreId;
-
   late Worker _worker;
+
+  String selectedStoreId = '';
 
   @override
   void onInit() {
     super.onInit();
     formKey = GlobalKey<FormState>();
-    // // Retrieve the selected store ID from arguments
-    // final arguments = Get.arguments;
-    // if (arguments != null) {
-    //   selectedStoreId = arguments as String;
-    // }
+    final argument = Get.arguments;
+    selectedStoreId = argument;
   }
 
   void setProductName(String value) {
@@ -100,6 +96,7 @@ class AddProductController extends GetxController {
           ...productDTO.toJson(),
           "createdAt": FieldValue.serverTimestamp(),
           //field for store id
+          "storeId": selectedStoreId,
         }).then((_) {
           // set the button to success
           _submitButtonController.buttonState = ButtonState.success;
