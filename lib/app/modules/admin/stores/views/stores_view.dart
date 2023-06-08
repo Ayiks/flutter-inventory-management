@@ -49,7 +49,7 @@ class StoresView extends GetView<StoresController> {
                     Store store = controller.storeList[index];
                     return GestureDetector(
                       onTap: () =>
-                          Get.toNamed(Routes.DASHBOARD, arguments: store),
+                          Get.toNamed(Routes.DASHBOARD, arguments: store.id),
                       child: StoreCard(
                         onPressed: () {
                           controller.showAlertDialog(store: store);
