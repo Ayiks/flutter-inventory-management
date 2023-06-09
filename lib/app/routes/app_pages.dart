@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:inventory_1/app/data/models/store/store.dart';
 
 import '../modules/admin/dashboard/bindings/dashboard_binding.dart';
 import '../modules/admin/dashboard/views/dashboard_view.dart';
