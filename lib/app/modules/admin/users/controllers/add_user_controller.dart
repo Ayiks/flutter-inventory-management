@@ -6,7 +6,6 @@ import 'package:inventory_1/app/data/models/user_profile/user_profile.dart';
 import 'package:inventory_1/app/widgets/buttons.dart';
 
 class AddUserController extends GetxController {
-  //TODO: Implement RegisterController
   final SubmitButtonController _submitButtonController =
       Get.find<SubmitButtonController>();
 
@@ -27,7 +26,7 @@ class AddUserController extends GetxController {
       name: '',
       email: '',
       phoneNumber: '',
-      company: '',
+      storeId: '',
     ),
   );
   UserProfile get userProfile => _userProfile.value;
@@ -59,9 +58,9 @@ class AddUserController extends GetxController {
     userPassword = value;
   }
 
-  void setCompany(String value) {
-    _userProfile(userProfile.copyWith(company: value));
-  }
+  // void setCompany(String value) {
+  //   _userProfile(userProfile.copyWith(company: value));
+  // }
 
   String? validateUserName(String? value) {
     if (value == null || value.isEmpty) {

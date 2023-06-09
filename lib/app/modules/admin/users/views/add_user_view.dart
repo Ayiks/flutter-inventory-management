@@ -162,7 +162,7 @@ class AddUserView extends GetView<AddUserController> {
                           color: Colors.black, width: Dimensions.width10 / 10),
                       borderRadius: BorderRadius.all(Radius.circular(4.0))),
                 ),
-                onChanged: controller.setCompany,
+                // onChanged: controller.setCompany,
                 // validator: controller.validateCompany,
               ),
               SizedBox(
