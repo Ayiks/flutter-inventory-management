@@ -9,7 +9,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../controllers/orders_controller.dart';
 
 class TodayOrders extends GetView<OrdersController> {
-  TodayOrders({Key? key}) : super(key: key);
+  const TodayOrders({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
