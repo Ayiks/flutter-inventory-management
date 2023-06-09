@@ -55,7 +55,7 @@ class StoresView extends GetView<StoresController> {
                           controller.showAlertDialog(store: store);
                         },
                         title: store.name,
-                        numberOfProducts: '${controller.products.length}',
+                        numberOfProducts: '${controller.storeList.length}',
                         valueOfProducts: "Ghc ${controller.getQuantity(store)}",
                       ),
                     );
