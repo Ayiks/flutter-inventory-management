@@ -12,7 +12,7 @@ class UserProfile with _$UserProfile {
     required String email,
     required String phoneNumber,
     @Default('user') String? role,
-    required String company,
+    required String storeId,
   }) = _UserProfile;
 
   factory UserProfile.fromJson(Map<String, dynamic> json) =>

@@ -13,7 +13,7 @@ _$_UserProfile _$$_UserProfileFromJson(Map<String, dynamic> json) =>
       email: json['email'] as String,
       phoneNumber: json['phoneNumber'] as String,
       role: json['role'] as String? ?? 'user',
-      company: json['company'] as String,
+      storeId: json['storeId'] as String,
     );
 
 Map<String, dynamic> _$$_UserProfileToJson(_$_UserProfile instance) =>
@@ -23,5 +23,5 @@ Map<String, dynamic> _$$_UserProfileToJson(_$_UserProfile instance) =>
       'email': instance.email,
       'phoneNumber': instance.phoneNumber,
       'role': instance.role,
-      'company': instance.company,
+      'storeId': instance.storeId,
     };
