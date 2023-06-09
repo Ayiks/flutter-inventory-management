@@ -44,7 +44,7 @@ class StoresController extends GetxController {
     double stockValue = 0;
     FirebaseFirestore.instance
         .collection('products')
-        .where('store_id', isEqualTo: store.id)
+        .where('storeId', isEqualTo: store.id)
         .snapshots()
         .listen((event) {
       _products(event.docs
@@ -59,7 +59,7 @@ class StoresController extends GetxController {
       quantity = element.quantity;
       stock = element.price;
 
-      stockValue += quantity + stock;
+      stockValue += quantity * stock;
     }
 
     return stockValue;
