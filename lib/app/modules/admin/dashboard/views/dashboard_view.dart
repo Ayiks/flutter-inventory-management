@@ -93,7 +93,8 @@ class DashboardView extends GetView<DashboardController> {
                                 .dashboardStats()
                                 .lowOnStockProductsCount,
                             onTap: () {
-                              Get.toNamed(Routes.LOW_ON_STOCK_PRODUCT);
+                              Get.toNamed(Routes.LOW_ON_STOCK_PRODUCT,
+                                  arguments: controller.storeID);
                             }),
                         StatCard(
                             color: Colors.red,
@@ -103,7 +104,8 @@ class DashboardView extends GetView<DashboardController> {
                                 .dashboardStats()
                                 .outOfStockProductsCount,
                             onTap: () {
-                              Get.toNamed(Routes.OUT_OF_STOCK_PRODUCT);
+                              Get.toNamed(Routes.OUT_OF_STOCK_PRODUCT,
+                                  arguments: controller.storeID);
                             }),
                       ],
                     )
