@@ -47,8 +47,7 @@ class DashboardController extends GetxController {
   // String get selectedStoreId => _selectedStoreId.value;
   // set selectedStoreId(String value) => _selectedStoreId.value = value;
 
-  // ignore: unused_field
-  late Worker _worker;
+  // late Worker _worker;
 
   final Rx<Store?> _store = Rx<Store?>(null);
   Store? get store => _store.value;
@@ -64,15 +63,6 @@ class DashboardController extends GetxController {
     final String storeId = Get.arguments;
 
     storeID = storeId;
-
-    // // Get the argument from the route
-    // Map<String, dynamic> jsonString = Get.arguments;
-
-    // // Convert the JSON string to an object
-    // Store store = Store.fromJson(jsonString);
-
-    // // Do something with the object
-    // storeName = store.name;
 
     // A listenert to update product stats
     productStreamSubscription = FirebaseFirestore.instance
@@ -167,7 +157,6 @@ class DashboardController extends GetxController {
   void onReady() {
     super.onReady();
     //  TODO: Redirect if product
-    print("dashboardcontroller Products: $store");
   }
 
   void setTotalProductCount() {
@@ -178,9 +167,7 @@ class DashboardController extends GetxController {
   void setLowOnStockProductsCount() {
     lowOnStockProducts(
       allProducts
-          .where((product) =>
-              product.quantity <= product.lowOnStock &&
-              product.storeId == storeID)
+          .where((product) => product.quantity <= product.lowOnStock)
           .toList(),
     );
 
@@ -190,10 +177,7 @@ class DashboardController extends GetxController {
 
   void setOutOfStockProductsCount() {
     outOfStockProducts(
-      allProducts
-          .where(
-              (product) => product.quantity == 0 && product.storeId == storeID)
-          .toList(),
+      allProducts.where((product) => product.quantity == 0).toList(),
     );
 
     dashboardStats(dashboardStats.value
@@ -220,7 +204,6 @@ class DashboardController extends GetxController {
   @override
   void onClose() async {
     super.onClose();
-    _worker.dispose();
     await productStreamSubscription.cancel();
     await orderStreamSubscription.cancel();
     await dashboardStreamSubscription.cancel();
