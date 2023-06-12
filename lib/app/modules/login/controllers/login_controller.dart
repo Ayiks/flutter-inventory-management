@@ -70,11 +70,12 @@ class LoginController extends GetxController {
           if (json != null) {
             UserProfile userProfile = UserProfile.fromJson({...json});
             _submitButtonController.buttonState = ButtonState.success;
-            Future.delayed(const Duration(seconds: 3), () {
+            Future.delayed(const Duration(seconds: 1), () {
               if (userProfile.role == 'admin') {
                 Get.offAndToNamed(Routes.STORES);
               } else {
-                Get.offAndToNamed(Routes.SHOPPING);
+                Get.offAndToNamed(Routes.SHOPPING,
+                    arguments: {userProfile.name, userProfile.company});
               }
             });
           }
