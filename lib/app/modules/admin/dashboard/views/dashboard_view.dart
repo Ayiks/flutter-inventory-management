@@ -47,7 +47,7 @@ class DashboardView extends GetView<DashboardController> {
             shrinkWrap: true,
             children: [
               Text(
-                'Stats',
+                'Stats for ${controller.storeName}',
                 style: TextStyle(
                     fontWeight: FontWeight.bold, fontSize: Dimensions.font26),
               ),
