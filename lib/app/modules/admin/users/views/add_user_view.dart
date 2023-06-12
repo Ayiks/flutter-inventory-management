@@ -142,6 +142,8 @@ class AddUserView extends GetView<AddUserController> {
                 height: Dimensions.height15,
               ),
               TextFormField(
+                initialValue: controller.storeName,
+                enabled: false,
                 keyboardType: TextInputType.visiblePassword,
                 textCapitalization: TextCapitalization.sentences,
                 decoration: InputDecoration(
@@ -160,7 +162,8 @@ class AddUserView extends GetView<AddUserController> {
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                           color: Colors.black, width: Dimensions.width10 / 10),
-                      borderRadius: BorderRadius.all(Radius.circular(4.0))),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(4.0))),
                 ),
                 // onChanged: controller.setCompany,
                 // validator: controller.validateCompany,
