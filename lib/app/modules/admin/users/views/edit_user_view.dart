@@ -5,12 +5,6 @@ import 'package:inventory_1/app/modules/admin/users/controllers/edit_user_contro
 import 'package:inventory_1/app/utils/dimmension.dart';
 
 class EditUserView extends GetView<EditUserController> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final RegExp emailRegExp = RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _numberController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
