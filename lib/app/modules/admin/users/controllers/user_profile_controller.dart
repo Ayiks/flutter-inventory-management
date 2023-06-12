@@ -17,7 +17,7 @@ class UserProfileController extends GetxController {
       name: '',
       email: '',
       phoneNumber: '',
-      storeId: '',
+      company: '',
     ),
   );
 
