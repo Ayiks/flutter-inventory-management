@@ -134,12 +134,12 @@ class UserProfileView extends GetView<UserProfileController> {
                             SizedBox(
                               width: Dimensions.width20,
                             ),
-                            // Text(
-                            //   controller.userProfile().company,
-                            //   style: TextStyle(
-                            //       fontSize: Dimensions.font16,
-                            //       fontWeight: FontWeight.w400),
-                            // )
+                            Text(
+                              controller.userProfile().company,
+                              style: TextStyle(
+                                  fontSize: Dimensions.font16,
+                                  fontWeight: FontWeight.w400),
+                            )
                           ],
                         ),
                       ),
@@ -168,13 +168,13 @@ class UserProfileView extends GetView<UserProfileController> {
                       Icon(
                         Icons.people,
                         size: Dimensions.iconSize24,
-                        color: Color.fromARGB(255, 4, 36, 61),
+                        color: const Color.fromARGB(255, 4, 36, 61),
                       ),
                       SizedBox(
                         width: Dimensions.height10,
                       ),
                       Text(
-                        'Manage Collabrators',
+                        'Manage Employees',
                         style: TextStyle(
                             fontSize: Dimensions.font16,
                             fontWeight: FontWeight.w400),
