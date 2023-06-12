@@ -3,11 +3,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventory_1/app/data/models/user_profile/user_profile.dart';
+import 'package:inventory_1/app/modules/admin/dashboard/controllers/dashboard_controller.dart';
 import 'package:inventory_1/app/widgets/buttons.dart';
 
 class AddUserController extends GetxController {
   final SubmitButtonController _submitButtonController =
       Get.find<SubmitButtonController>();
+
+  final DashboardController _dashboardController =
+      Get.find<DashboardController>();
 
   late final GlobalKey<FormState> formKey;
   static final FirebaseFirestore _firebaseFirestore =
@@ -26,16 +30,21 @@ class AddUserController extends GetxController {
       name: '',
       email: '',
       phoneNumber: '',
-      storeId: '',
+      company: '',
     ),
   );
   UserProfile get userProfile => _userProfile.value;
 
   late Worker _worker;
+  String storeId = '';
+  String storeName = '';
 
   @override
   void onInit() {
     super.onInit();
+    storeId = _dashboardController.storeID;
+    storeName = _dashboardController.storeName;
+
     formKey = GlobalKey<FormState>();
     _worker = ever(_userProfile, (userProfile) {
       _submitButtonController.isFormValid = formKey.currentState!.validate();
@@ -57,10 +66,6 @@ class AddUserController extends GetxController {
   void setPassword(String value) {
     userPassword = value;
   }
-
-  // void setCompany(String value) {
-  //   _userProfile(userProfile.copyWith(company: value));
-  // }
 
   String? validateUserName(String? value) {
     if (value == null || value.isEmpty) {
@@ -103,6 +108,7 @@ class AddUserController extends GetxController {
             ...userProfile.toJson(),
             "password": userPassword,
             "userId": userCredential.user!.uid,
+            "company": storeId,
           }).then((_) {
             // set the button to success
             _submitButtonController.buttonState = ButtonState.success;
