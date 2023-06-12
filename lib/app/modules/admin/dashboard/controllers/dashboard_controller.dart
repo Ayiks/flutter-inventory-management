@@ -57,12 +57,17 @@ class DashboardController extends GetxController {
   String get storeID => _storeID.value;
   set storeID(String value) => _storeID.value = value;
 
+  final RxString _storeName = ''.obs;
+  String get storeName => _storeName.value;
+  set storeName(String value) => _storeName.value = value;
+
   @override
   void onInit() {
     super.onInit();
-    final String storeId = Get.arguments;
+    final List<String> store = Get.arguments;
 
-    storeID = storeId;
+    storeID = store[0];
+    storeName = store[1];
 
     // A listenert to update product stats
     productStreamSubscription = FirebaseFirestore.instance
