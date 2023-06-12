@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:get/get.dart';
-import 'package:inventory_1/app/data/models/product/product.dart';
 import 'package:inventory_1/app/data/models/user_profile/user_profile.dart';
-import 'package:inventory_1/app/modules/admin/products/controllers/edit_product_controller.dart';
-import 'package:inventory_1/app/modules/admin/users/controllers/edit_user_controller.dart';
-import 'package:inventory_1/app/modules/admin/users/views/edit_user_view.dart';
 import 'package:inventory_1/app/modules/admin/users/widgets/confirm_user_delete_alert.dart';
 import 'package:inventory_1/app/routes/app_pages.dart';
 import 'package:inventory_1/app/utils/dimmension.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../controllers/all_users_controller.dart';
 
