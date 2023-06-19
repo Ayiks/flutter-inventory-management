@@ -98,8 +98,11 @@ class DashboardController extends GetxController {
     );
 
     // a listener to update the dailySales stats
-    orderStreamSubscription =
-        FirebaseFirestore.instance.collection('orders').snapshots().listen(
+    orderStreamSubscription = FirebaseFirestore.instance
+        .collection('orders')
+        .where('storeId', isEqualTo: storeID)
+        .snapshots()
+        .listen(
       (event) {
         // STEP 1: set allorders List
         todaysOrders(
@@ -142,7 +145,7 @@ class DashboardController extends GetxController {
 
     dashboardStreamSubscription = FirebaseFirestore.instance
         .collection('dashboard')
-        .doc('stat')
+        .doc(storeID)
         .snapshots()
         .listen(
       (event) {
@@ -161,7 +164,6 @@ class DashboardController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    //  TODO: Redirect if product
   }
 
   void setTotalProductCount() {
