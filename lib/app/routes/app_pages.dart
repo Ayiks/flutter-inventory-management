@@ -12,10 +12,10 @@ import '../modules/admin/products/views/add_product_view.dart';
 import '../modules/admin/products/views/all_products_view.dart';
 import '../modules/admin/products/views/edit_product_view.dart';
 import '../modules/admin/stores/bindings/create_stores_binding.dart';
-import '../modules/admin/stores/bindings/stores_binding.dart';
 import '../modules/admin/stores/bindings/edit_store_binding.dart';
-import '../modules/admin/stores/views/edit_store_view.dart';
+import '../modules/admin/stores/bindings/stores_binding.dart';
 import '../modules/admin/stores/views/create_stores_view.dart';
+import '../modules/admin/stores/views/edit_store_view.dart';
 import '../modules/admin/stores/views/stores_view.dart';
 import '../modules/admin/users/bindings/add_user_binding.dart';
 import '../modules/admin/users/bindings/all_users_binding.dart';
@@ -31,6 +31,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/forgor-password/bindings/forgor_password_binding.dart';
 import '../modules/login/forgor-password/views/forgor_password_view.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/sales_person/first_page/bindings/first_page_binding.dart';
+import '../modules/sales_person/first_page/views/first_page_view.dart';
 import '../modules/sales_person/shopping/bindings/checkout_binding.dart';
 import '../modules/sales_person/shopping/bindings/shopping_binding.dart';
 import '../modules/sales_person/shopping/views/checkout_view.dart';
@@ -144,6 +146,11 @@ class AppPages {
           binding: EditStoreBinding(),
         ),
       ],
+    ),
+    GetPage(
+      name: _Paths.FIRST_PAGE,
+      page: () => const FirstPageView(),
+      binding: FirstPageBinding(),
     ),
   ];
 }

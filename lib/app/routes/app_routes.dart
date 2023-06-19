@@ -27,6 +27,7 @@ abstract class Routes {
   static const STORES = _Paths.STORES;
   static const CREATE_STORES = _Paths.STORES + _Paths.CREATE_STORES;
   static const EDIT_STORE = _Paths.STORES + _Paths.EDIT_STORE;
+  static const FIRST_PAGE = _Paths.FIRST_PAGE;
 }
 
 abstract class _Paths {
@@ -52,4 +53,5 @@ abstract class _Paths {
   static const STORES = '/stores';
   static const CREATE_STORES = '/store/create-stores';
   static const EDIT_STORE = '/store/edit-store';
+  static const FIRST_PAGE = '/shopping/first-page';
 }
