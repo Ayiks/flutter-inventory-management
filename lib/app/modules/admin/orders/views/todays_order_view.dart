@@ -38,7 +38,9 @@ class TodayOrders extends GetView<OrdersController> {
                           Order order = controller.todayOrders[index];
 
                           return Container(
-                            height: Dimensions.height20 * 10,
+                            // height: Dimensions.height20 * 10,
+                            padding:
+                                EdgeInsets.only(bottom: Dimensions.height10),
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                                 color: Colors.black12,
@@ -202,6 +204,11 @@ class TodayOrders extends GetView<OrdersController> {
                                       right: Dimensions.width10,
                                       left: Dimensions.width20),
                                   child: Container(
+                                    decoration: BoxDecoration(
+                                        border: Border(
+                                            bottom: BorderSide(
+                                                width: Dimensions.width10 / 10,
+                                                color: Colors.grey))),
                                     height: Dimensions.height20,
                                     width: MediaQuery.of(context).size.width,
                                     child: Row(
@@ -221,11 +228,33 @@ class TodayOrders extends GetView<OrdersController> {
                                         ),
                                       ],
                                     ),
-                                    // decoration: BoxDecoration(
-                                    //     border: Border(
-                                    //         bottom: BorderSide(
-                                    //             width: Dimensions.width10 / 10,
-                                    //             color: Colors.grey)))
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: Dimensions.height20,
+                                      right: Dimensions.width10,
+                                      left: Dimensions.width20),
+                                  child: SizedBox(
+                                    height: Dimensions.height20,
+                                    width: MediaQuery.of(context).size.width,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Sales Person',
+                                          style: TextStyle(
+                                              fontSize: Dimensions.font16,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        Text(
+                                          '${order.userName}',
+                                          style: TextStyle(
+                                              fontSize: Dimensions.font16),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],
