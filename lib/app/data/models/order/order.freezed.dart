@@ -25,6 +25,8 @@ mixin _$Order {
       throw _privateConstructorUsedError;
   double get orderQuantity => throw _privateConstructorUsedError;
   double get total => throw _privateConstructorUsedError;
+  String? get companyId => throw _privateConstructorUsedError;
+  String? get userName => throw _privateConstructorUsedError;
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp? get createdAt => throw _privateConstructorUsedError;
 
@@ -43,6 +45,8 @@ abstract class $OrderCopyWith<$Res> {
       Map<String, BasketItem> orderDetails,
       double orderQuantity,
       double total,
+      String? companyId,
+      String? userName,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt});
 }
@@ -64,6 +68,8 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
     Object? orderDetails = null,
     Object? orderQuantity = null,
     Object? total = null,
+    Object? companyId = freezed,
+    Object? userName = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -83,6 +89,14 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as double,
+      companyId: freezed == companyId
+          ? _value.companyId
+          : companyId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userName: freezed == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -102,6 +116,8 @@ abstract class _$$_OrderCopyWith<$Res> implements $OrderCopyWith<$Res> {
       Map<String, BasketItem> orderDetails,
       double orderQuantity,
       double total,
+      String? companyId,
+      String? userName,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt});
 }
@@ -119,6 +135,8 @@ class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res, _$_Order>
     Object? orderDetails = null,
     Object? orderQuantity = null,
     Object? total = null,
+    Object? companyId = freezed,
+    Object? userName = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_$_Order(
@@ -138,6 +156,14 @@ class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res, _$_Order>
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as double,
+      companyId: freezed == companyId
+          ? _value.companyId
+          : companyId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userName: freezed == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -154,6 +180,8 @@ class _$_Order implements _Order {
       required final Map<String, BasketItem> orderDetails,
       required this.orderQuantity,
       required this.total,
+      this.companyId,
+      this.userName,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           this.createdAt})
       : _orderDetails = orderDetails;
@@ -176,12 +204,16 @@ class _$_Order implements _Order {
   @override
   final double total;
   @override
+  final String? companyId;
+  @override
+  final String? userName;
+  @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   final Timestamp? createdAt;
 
   @override
   String toString() {
-    return 'Order(id: $id, orderDetails: $orderDetails, orderQuantity: $orderQuantity, total: $total, createdAt: $createdAt)';
+    return 'Order(id: $id, orderDetails: $orderDetails, orderQuantity: $orderQuantity, total: $total, companyId: $companyId, userName: $userName, createdAt: $createdAt)';
   }
 
   @override
@@ -195,6 +227,10 @@ class _$_Order implements _Order {
             (identical(other.orderQuantity, orderQuantity) ||
                 other.orderQuantity == orderQuantity) &&
             (identical(other.total, total) || other.total == total) &&
+            (identical(other.companyId, companyId) ||
+                other.companyId == companyId) &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
@@ -207,6 +243,8 @@ class _$_Order implements _Order {
       const DeepCollectionEquality().hash(_orderDetails),
       orderQuantity,
       total,
+      companyId,
+      userName,
       createdAt);
 
   @JsonKey(ignore: true)
@@ -229,6 +267,8 @@ abstract class _Order implements Order {
       required final Map<String, BasketItem> orderDetails,
       required final double orderQuantity,
       required final double total,
+      final String? companyId,
+      final String? userName,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           final Timestamp? createdAt}) = _$_Order;
 
@@ -242,6 +282,10 @@ abstract class _Order implements Order {
   double get orderQuantity;
   @override
   double get total;
+  @override
+  String? get companyId;
+  @override
+  String? get userName;
   @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp? get createdAt;

@@ -13,8 +13,10 @@ class Order with _$Order {
     required Map<String, BasketItem> orderDetails,
     required double orderQuantity,
     required double total,
+    String? companyId,
+    String? userName,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-        Timestamp? createdAt,
+    Timestamp? createdAt,
   }) = _Order;
 
   factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);
@@ -27,7 +29,7 @@ class OrderDTO with _$OrderDTO {
     required double orderQuantity,
     required double total,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-        Timestamp? createdAt,
+    Timestamp? createdAt,
   }) = _OrderDTO;
 
   factory OrderDTO.fromJson(Map<String, dynamic> json) =>
