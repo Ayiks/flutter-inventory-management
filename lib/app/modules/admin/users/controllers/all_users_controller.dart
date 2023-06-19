@@ -2,11 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:inventory_1/app/data/models/user_profile/user_profile.dart';
 import 'package:inventory_1/app/modules/admin/users/controllers/edit_user_controller.dart';
-import 'package:inventory_1/app/modules/admin/users/views/edit_user_view.dart';
 import 'package:inventory_1/app/routes/app_pages.dart';
 
 class AllUsersController extends GetxController {
-  //TODO: Implement AllUsersController
   final EditUserController editUserController = Get.find<EditUserController>();
 
   RxList<UserProfile> allUsers = RxList<UserProfile>([]);
