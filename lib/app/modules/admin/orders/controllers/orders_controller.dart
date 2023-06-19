@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:inventory_1/app/data/models/order/order.dart' as o;
+import 'package:inventory_1/app/modules/admin/dashboard/controllers/dashboard_controller.dart';
 import 'package:inventory_1/app/utils/helpers.dart';
 
 class OrdersController extends GetxController {
@@ -10,6 +11,9 @@ class OrdersController extends GetxController {
       TextEditingController();
   final TextEditingController filterToDateTextEditingController =
       TextEditingController();
+
+  final DashboardController dashboardController =
+      Get.find<DashboardController>();
 
   final RxList<o.Order> _allOrders = RxList<o.Order>([]);
   List<o.Order> get allOrders => _allOrders;
@@ -50,9 +54,12 @@ class OrdersController extends GetxController {
     // filterToDateTextEditingController.text =
     //     DateFormat.yMMMMd().format(filterToDate);
 
+    String storeID = dashboardController.storeID;
+
 // fetch from Firestore
     FirebaseFirestore.instance
         .collection('orders')
+        .where('storeId', isEqualTo: storeID)
         .orderBy('createdAt', descending: true)
         .snapshots()
         .listen((event) {
