@@ -4,14 +4,21 @@ import 'package:get/get.dart';
 import 'package:inventory_1/app/data/models/basket/basket_model.dart';
 import 'package:inventory_1/app/data/models/order/order.dart';
 import 'package:inventory_1/app/data/models/product/product.dart';
+import 'package:inventory_1/app/modules/sales_person/first_page/controllers/first_page_controller.dart';
 import 'package:inventory_1/app/utils/helpers.dart';
 
 class CheckoutController extends GetxController {
   RxMap<String, BasketItem> basket = RxMap({});
+  final FirstPageController _firstPageController =
+      Get.find<FirstPageController>();
 
+  String storeID = "";
+  String salesName = "";
   @override
   void onInit() {
     super.onInit();
+    storeID = _firstPageController.userCompanyId;
+    salesName = _firstPageController.userName;
   }
 
   void confirmOrder() {
@@ -101,7 +108,11 @@ class CheckoutController extends GetxController {
         orderQuantity: getGrandQuantity(),
         total: getGrandTotal(),
       );
-      FirebaseFirestore.instance.collection('orders').add(orderDTO.toJson());
+      FirebaseFirestore.instance.collection('orders').add({
+        ...orderDTO.toJson(),
+        "salesAgent": salesName,
+        "storeId": storeID,
+      });
 
       adjustProductInventory();
 
