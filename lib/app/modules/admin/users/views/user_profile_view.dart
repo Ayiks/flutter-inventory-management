@@ -134,12 +134,12 @@ class UserProfileView extends GetView<UserProfileController> {
                             SizedBox(
                               width: Dimensions.width20,
                             ),
-                            Text(
-                              controller.userProfile().company,
-                              style: TextStyle(
-                                  fontSize: Dimensions.font16,
-                                  fontWeight: FontWeight.w400),
-                            )
+                            // Text(
+                            //   controller.userProfile().company[0],
+                            //   style: TextStyle(
+                            //       fontSize: Dimensions.font16,
+                            //       fontWeight: FontWeight.w400),
+                            // )
                           ],
                         ),
                       ),
