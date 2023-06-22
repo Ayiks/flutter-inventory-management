@@ -26,7 +26,7 @@ mixin _$Order {
   double get orderQuantity => throw _privateConstructorUsedError;
   double get total => throw _privateConstructorUsedError;
   String? get companyId => throw _privateConstructorUsedError;
-  String? get userName => throw _privateConstructorUsedError;
+  String? get salesAgent => throw _privateConstructorUsedError;
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp? get createdAt => throw _privateConstructorUsedError;
 
@@ -46,7 +46,7 @@ abstract class $OrderCopyWith<$Res> {
       double orderQuantity,
       double total,
       String? companyId,
-      String? userName,
+      String? salesAgent,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt});
 }
@@ -69,7 +69,7 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
     Object? orderQuantity = null,
     Object? total = null,
     Object? companyId = freezed,
-    Object? userName = freezed,
+    Object? salesAgent = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -93,9 +93,9 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
           ? _value.companyId
           : companyId // ignore: cast_nullable_to_non_nullable
               as String?,
-      userName: freezed == userName
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
+      salesAgent: freezed == salesAgent
+          ? _value.salesAgent
+          : salesAgent // ignore: cast_nullable_to_non_nullable
               as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
@@ -117,7 +117,7 @@ abstract class _$$_OrderCopyWith<$Res> implements $OrderCopyWith<$Res> {
       double orderQuantity,
       double total,
       String? companyId,
-      String? userName,
+      String? salesAgent,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt});
 }
@@ -136,7 +136,7 @@ class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res, _$_Order>
     Object? orderQuantity = null,
     Object? total = null,
     Object? companyId = freezed,
-    Object? userName = freezed,
+    Object? salesAgent = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_$_Order(
@@ -160,9 +160,9 @@ class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res, _$_Order>
           ? _value.companyId
           : companyId // ignore: cast_nullable_to_non_nullable
               as String?,
-      userName: freezed == userName
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
+      salesAgent: freezed == salesAgent
+          ? _value.salesAgent
+          : salesAgent // ignore: cast_nullable_to_non_nullable
               as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
@@ -181,7 +181,7 @@ class _$_Order implements _Order {
       required this.orderQuantity,
       required this.total,
       this.companyId,
-      this.userName,
+      this.salesAgent,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           this.createdAt})
       : _orderDetails = orderDetails;
@@ -206,14 +206,14 @@ class _$_Order implements _Order {
   @override
   final String? companyId;
   @override
-  final String? userName;
+  final String? salesAgent;
   @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   final Timestamp? createdAt;
 
   @override
   String toString() {
-    return 'Order(id: $id, orderDetails: $orderDetails, orderQuantity: $orderQuantity, total: $total, companyId: $companyId, userName: $userName, createdAt: $createdAt)';
+    return 'Order(id: $id, orderDetails: $orderDetails, orderQuantity: $orderQuantity, total: $total, companyId: $companyId, salesAgent: $salesAgent, createdAt: $createdAt)';
   }
 
   @override
@@ -229,8 +229,8 @@ class _$_Order implements _Order {
             (identical(other.total, total) || other.total == total) &&
             (identical(other.companyId, companyId) ||
                 other.companyId == companyId) &&
-            (identical(other.userName, userName) ||
-                other.userName == userName) &&
+            (identical(other.salesAgent, salesAgent) ||
+                other.salesAgent == salesAgent) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
@@ -244,7 +244,7 @@ class _$_Order implements _Order {
       orderQuantity,
       total,
       companyId,
-      userName,
+      salesAgent,
       createdAt);
 
   @JsonKey(ignore: true)
@@ -268,7 +268,7 @@ abstract class _Order implements Order {
       required final double orderQuantity,
       required final double total,
       final String? companyId,
-      final String? userName,
+      final String? salesAgent,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           final Timestamp? createdAt}) = _$_Order;
 
@@ -285,7 +285,7 @@ abstract class _Order implements Order {
   @override
   String? get companyId;
   @override
-  String? get userName;
+  String? get salesAgent;
   @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp? get createdAt;

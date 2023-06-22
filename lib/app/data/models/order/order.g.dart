@@ -14,7 +14,7 @@ _$_Order _$$_OrderFromJson(Map<String, dynamic> json) => _$_Order(
       orderQuantity: (json['orderQuantity'] as num).toDouble(),
       total: (json['total'] as num).toDouble(),
       companyId: json['companyId'] as String?,
-      userName: json['userName'] as String?,
+      salesAgent: json['salesAgent'] as String?,
       createdAt: timestampFromJson(json['createdAt']),
     );
 
@@ -25,7 +25,7 @@ Map<String, dynamic> _$$_OrderToJson(_$_Order instance) => <String, dynamic>{
       'orderQuantity': instance.orderQuantity,
       'total': instance.total,
       'companyId': instance.companyId,
-      'userName': instance.userName,
+      'salesAgent': instance.salesAgent,
       'createdAt': timestampToJson(instance.createdAt),
     };
 

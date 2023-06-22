@@ -14,7 +14,7 @@ class Order with _$Order {
     required double orderQuantity,
     required double total,
     String? companyId,
-    String? userName,
+    String? salesAgent,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
     Timestamp? createdAt,
   }) = _Order;
