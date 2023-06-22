@@ -287,7 +287,9 @@ class DashboardView extends GetView<DashboardController> {
               //       );
               //     }))
               GestureDetector(
-                onTap: () => Get.toNamed(Routes.SHOPPING),
+                onTap: () {
+                  Get.toNamed(Routes.SHOPPING);
+                },
                 child: Container(
                   height: Dimensions.height30 * 2.5,
                   width: MediaQuery.of(context).size.width,
