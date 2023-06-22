@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventory_1/app/data/models/product/product.dart';
-import 'package:inventory_1/app/data/models/user_profile/user_profile.dart';
 import 'package:inventory_1/app/modules/sales_person/shopping/controllers/checkout_controller.dart';
 import 'package:inventory_1/app/routes/app_pages.dart';
 
@@ -41,11 +40,11 @@ class ShoppingController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    final List<String> user = Get.arguments;
-    final String storeID = user[0];
+    // final List<String> user = Get.arguments;
+    // final String storeID = user[0];
     streamSubscription = FirebaseFirestore.instance
         .collection('products')
-        .where('storeId', isEqualTo: storeID)
+        // .where('storeId', isEqualTo: storeID)
         .where("quantity", isGreaterThan: 0)
         .snapshots()
         .listen(
