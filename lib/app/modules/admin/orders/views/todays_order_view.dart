@@ -249,7 +249,7 @@ class TodayOrders extends GetView<OrdersController> {
                                               fontWeight: FontWeight.w600),
                                         ),
                                         Text(
-                                          '${order.userName}',
+                                          '${order.salesAgent}',
                                           style: TextStyle(
                                               fontSize: Dimensions.font16),
                                         ),
