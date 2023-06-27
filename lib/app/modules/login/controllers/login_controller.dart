@@ -74,11 +74,10 @@ class LoginController extends GetxController {
               if (userProfile.role == 'admin') {
                 Get.offAndToNamed(Routes.STORES);
               } else {
-                Get.offAndToNamed(Routes.FIRST_PAGE, arguments: [
-                  userProfile.company,
-                  userProfile.name,
-                  userProfile.phoneNumber
-                ]);
+                Get.offAndToNamed(
+                  Routes.FIRST_PAGE,
+                  arguments: userProfile.company,
+                );
               }
             });
           }
