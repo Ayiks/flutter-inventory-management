@@ -14,10 +14,10 @@ class FirstPageController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    final List<String> user = Get.arguments;
-    userName = user[1];
-    userCompanyId = user[0];
-    phoneNumber = user[2];
+    // final List<String> user = Get.arguments;
+    // userName = user[1];
+    userCompanyId = Get.arguments;
+    // phoneNumber = user[2];
 
     firebaseFirestore
         .collection('stores')
