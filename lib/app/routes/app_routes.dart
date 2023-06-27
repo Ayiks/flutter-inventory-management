@@ -53,5 +53,5 @@ abstract class _Paths {
   static const STORES = '/stores';
   static const CREATE_STORES = '/store/create-stores';
   static const EDIT_STORE = '/store/edit-store';
-  static const FIRST_PAGE = '/shopping/first-page';
+  static const FIRST_PAGE = '/first-page';
 }

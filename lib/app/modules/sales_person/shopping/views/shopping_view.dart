@@ -19,13 +19,15 @@ class ShoppingView extends GetView<ShoppingController> {
           style: TextStyle(fontSize: Dimensions.font26 - 2),
         ),
         actions: [
-          IconButton(
-              onPressed: controller.handleSignOut,
-              icon: Icon(
-                Icons.logout_rounded,
-                size: Dimensions.iconSize24,
-                color: Colors.red,
-              ))
+          controller.role == 'user'
+              ? IconButton(
+                  onPressed: controller.handleSignOut,
+                  icon: Icon(
+                    Icons.logout_rounded,
+                    size: Dimensions.iconSize24,
+                    color: Colors.red,
+                  ))
+              : Container()
         ],
         centerTitle: true,
       ),
@@ -131,7 +133,7 @@ class ShoppingView extends GetView<ShoppingController> {
             vertical: Dimensions.height20, horizontal: Dimensions.width30),
         child: GestureDetector(
           onTap: () {
-            Get.toNamed(Routes.CHECKOUT);
+            Get.toNamed(Routes.CHECKOUT, arguments: [controller.storeID]);
           },
           child: Container(
             decoration: BoxDecoration(
