@@ -1,24 +1,48 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventory_1/app/data/models/basket/basket_model.dart';
 import 'package:inventory_1/app/data/models/order/order.dart';
 import 'package:inventory_1/app/data/models/product/product.dart';
-import 'package:inventory_1/app/modules/sales_person/first_page/controllers/first_page_controller.dart';
+import 'package:inventory_1/app/data/models/user_profile/user_profile.dart';
+import 'package:inventory_1/app/modules/login/controllers/login_controller.dart';
 import 'package:inventory_1/app/utils/helpers.dart';
 
 class CheckoutController extends GetxController {
   RxMap<String, BasketItem> basket = RxMap({});
-  final FirstPageController _firstPageController =
-      Get.find<FirstPageController>();
+
+  final userProfile = Rx<UserProfile>(
+    UserProfile(
+      userId: '',
+      name: '',
+      email: '',
+      phoneNumber: '',
+      company: '',
+    ),
+  );
 
   String storeID = "";
-  String salesName = "";
+  // ?String salesName = "";
+  String uid = "";
   @override
   void onInit() {
     super.onInit();
-    storeID = _firstPageController.userCompanyId;
-    salesName = _firstPageController.userName;
+    storeID = Get.arguments;
+    // salesName = _loginController.use
+    // final List<String> user = Get.arguments;
+    // storeID = user[0];
+    uid = FirebaseAuth.instance.currentUser!.uid;
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .snapshots()
+        .listen((event) {
+      var user = event.data();
+      if (user != null) {
+        userProfile(UserProfile.fromJson({...user, "id": event.id}));
+      }
+    });
   }
 
   void confirmOrder() {
@@ -110,7 +134,7 @@ class CheckoutController extends GetxController {
       );
       FirebaseFirestore.instance.collection('orders').add({
         ...orderDTO.toJson(),
-        "salesAgent": salesName,
+        "salesAgent": userProfile().name,
         "storeId": storeID,
       });
 
