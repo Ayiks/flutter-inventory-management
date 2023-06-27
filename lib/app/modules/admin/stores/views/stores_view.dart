@@ -21,7 +21,16 @@ class StoresView extends GetView<StoresController> {
               onPressed: () {
                 Get.toNamed(Routes.CREATE_STORES);
               },
-              icon: const Icon(Icons.add))
+              icon: const Icon(Icons.add)),
+          IconButton(
+              onPressed: () {
+                controller.handleSignOut();
+              },
+              icon: Icon(
+                Icons.logout_rounded,
+                size: Dimensions.font20,
+                color: Colors.red,
+              ))
         ],
       ),
       body: SafeArea(
@@ -64,6 +73,10 @@ class StoresView extends GetView<StoresController> {
                     return const Divider();
                   }),
                   itemCount: controller.storeList.length))),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
