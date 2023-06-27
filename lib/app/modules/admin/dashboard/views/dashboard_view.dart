@@ -30,14 +30,14 @@ class DashboardView extends GetView<DashboardController> {
               },
             ),
           ),
-          IconButton(
-            onPressed: controller.handleSignOut,
-            icon: Icon(
-              Icons.logout_rounded,
-              size: Dimensions.iconSize24,
-              color: Colors.red,
-            ),
-          ),
+          // IconButton(
+          //   onPressed: controller.handleSignOut,
+          //   icon: Icon(
+          //     Icons.logout_rounded,
+          //     size: Dimensions.iconSize24,
+          //     color: Colors.red,
+          //   ),
+          // ),
         ],
       ),
       body: Padding(
@@ -288,7 +288,7 @@ class DashboardView extends GetView<DashboardController> {
               //     }))
               GestureDetector(
                 onTap: () {
-                  Get.toNamed(Routes.SHOPPING);
+                  Get.toNamed(Routes.SHOPPING, arguments: controller.storeID);
                 },
                 child: Container(
                   height: Dimensions.height30 * 2.5,
