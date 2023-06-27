@@ -40,7 +40,7 @@ class StoreCard extends StatelessWidget {
                 subtitle: numberOfProducts,
               ),
               StoreInfo(title: 'Total Stock Value', subtitle: valueOfProducts),
-              StoreInfo(title: 'Total Cost', subtitle: 'Ghc 5,000')
+              // StoreInfo(title: 'Total Cost', subtitle: 'Ghc 5,000')
             ],
           )
         ],
