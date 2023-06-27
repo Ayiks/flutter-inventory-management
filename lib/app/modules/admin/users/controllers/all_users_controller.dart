@@ -1,19 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:inventory_1/app/data/models/user_profile/user_profile.dart';
+import 'package:inventory_1/app/modules/admin/dashboard/controllers/dashboard_controller.dart';
 import 'package:inventory_1/app/modules/admin/users/controllers/edit_user_controller.dart';
 import 'package:inventory_1/app/routes/app_pages.dart';
 
 class AllUsersController extends GetxController {
   final EditUserController editUserController = Get.find<EditUserController>();
+  final DashboardController dashboardController =
+      Get.find<DashboardController>();
 
   RxList<UserProfile> allUsers = RxList<UserProfile>([]);
 
   @override
   void onInit() {
     super.onInit();
-    FirebaseFirestore.instance.collection('users').snapshots().listen((event) {
-      final source = (event.metadata.hasPendingWrites) ? "Local" : "Server";
+    FirebaseFirestore.instance
+        .collection('users')
+        .where('company', isEqualTo: dashboardController.storeID)
+        .snapshots()
+        .listen((event) {
+      // final source = (event.metadata.hasPendingWrites) ? "Local" : "Server";
 
       allUsers(
         event.docs
