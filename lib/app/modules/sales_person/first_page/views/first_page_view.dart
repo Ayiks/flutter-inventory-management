@@ -68,7 +68,7 @@ class FirstPageView extends GetView<FirstPageController> {
       bottomNavigationBar: Material(
         child: GestureDetector(
           onTap: () {
-            Get.toNamed(Routes.SHOPPING, arguments: [controller.userCompanyId]);
+            Get.toNamed(Routes.SHOPPING, arguments: controller.userCompanyId);
           },
           child: Container(
             height: Dimensions.height20 * 5,
