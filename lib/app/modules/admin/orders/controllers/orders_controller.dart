@@ -12,8 +12,11 @@ class OrdersController extends GetxController {
   final TextEditingController filterToDateTextEditingController =
       TextEditingController();
 
-  final DashboardController dashboardController =
-      Get.find<DashboardController>();
+  // final DashboardController dashboardController =
+  //     Get.find<DashboardController>();
+
+  // final FirstPageController firstPageController =
+  //     Get.find<FirstPageController>();
 
   final RxList<o.Order> _allOrders = RxList<o.Order>([]);
   List<o.Order> get allOrders => _allOrders;
@@ -54,12 +57,14 @@ class OrdersController extends GetxController {
     // filterToDateTextEditingController.text =
     //     DateFormat.yMMMMd().format(filterToDate);
 
-    String storeID = dashboardController.storeID;
+    // String storeID = dashboardController.storeID;
+    // String userStoreId = firstPageController.userCompanyId;
+    String storeId = Get.arguments;
 
 // fetch from Firestore
     FirebaseFirestore.instance
         .collection('orders')
-        .where('storeId', isEqualTo: storeID)
+        .where('storeId', isEqualTo: storeId)
         .orderBy('createdAt', descending: true)
         .snapshots()
         .listen((event) {
