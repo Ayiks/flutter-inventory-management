@@ -59,14 +59,15 @@ class StoresView extends GetView<StoresController> {
                     return GestureDetector(
                       onTap: () => Get.toNamed(Routes.DASHBOARD,
                           arguments: [store.id, store.name]),
-                      child: StoreCard(
-                        onPressed: () {
-                          controller.showAlertDialog(store: store);
-                        },
-                        title: store.name,
-                        numberOfProducts: '${controller.storeList.length}',
-                        valueOfProducts: "Ghc ${controller.getQuantity(store)}",
-                      ),
+                      child: Obx(() => StoreCard(
+                            onPressed: () {
+                              controller.showAlertDialog(store: store);
+                            },
+                            title: store.name,
+                            numberOfProducts: '${controller.products.length}',
+                            valueOfProducts:
+                                "Ghc ${controller.getQuantity(store)}",
+                          )),
                     );
                   }),
                   separatorBuilder: ((index, context) {
