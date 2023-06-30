@@ -66,7 +66,10 @@ class DashboardView extends GetView<DashboardController> {
                             label: 'Daily Sales',
                             value: controller.dashboardStats().dailySales,
                             onTap: () {
-                              Get.toNamed(Routes.TODAYS_ORDERS);
+                              Get.toNamed(
+                                Routes.TODAYS_ORDERS,
+                                arguments: controller.storeID,
+                              );
                             }),
                         StatCard(
                             color: Colors.green,
@@ -117,7 +120,10 @@ class DashboardView extends GetView<DashboardController> {
               ),
               GestureDetector(
                 onTap: () {
-                  Get.toNamed(Routes.ORDERS);
+                  Get.toNamed(
+                    Routes.ORDERS,
+                    arguments: controller.storeID,
+                  );
                 },
                 child: Container(
                   decoration: BoxDecoration(
