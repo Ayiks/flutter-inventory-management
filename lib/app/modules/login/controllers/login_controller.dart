@@ -76,7 +76,7 @@ class LoginController extends GetxController {
               } else {
                 Get.offAndToNamed(
                   Routes.FIRST_PAGE,
-                  arguments: userProfile.company,
+                  arguments: [userProfile.company, userProfile.name],
                 );
               }
             });
