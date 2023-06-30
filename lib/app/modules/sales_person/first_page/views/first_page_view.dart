@@ -28,39 +28,45 @@ class FirstPageView extends GetView<FirstPageController> {
                       fontSize: Dimensions.font20, fontWeight: FontWeight.w600),
                 ),
                 SizedBox(height: Dimensions.height20),
-                Container(
-                  padding: EdgeInsets.all(Dimensions.height15),
-                  // height: Dimensions.height45 * 5,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.all(
-                          Radius.circular(Dimensions.radius20))),
-                  child: Obx(() => Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              controller.store().name,
-                              style: TextStyle(
-                                  fontSize: Dimensions.font20,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            SizedBox(height: Dimensions.height10),
-                            const Divider(),
-                            const Text('Today\'s Sales'),
-                            SizedBox(height: Dimensions.height10),
-                            const Text(
-                              'GHC 3,000',
-                              style: TextStyle(fontWeight: FontWeight.w600),
-                            ),
-                            SizedBox(height: Dimensions.height30),
-                            const Text('Products'),
-                            SizedBox(height: Dimensions.height10),
-                            const Text(
-                              '200',
-                              style: TextStyle(fontWeight: FontWeight.w600),
-                            )
-                          ])),
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.TODAYS_ORDERS,
+                        arguments: controller.userCompanyId);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(Dimensions.height15),
+                    // height: Dimensions.height45 * 5,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        border: Border.all(),
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(Dimensions.radius20))),
+                    child: Obx(() => Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                controller.store().name,
+                                style: TextStyle(
+                                    fontSize: Dimensions.font20,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              SizedBox(height: Dimensions.height10),
+                              const Divider(),
+                              const Text('Today\'s Sales'),
+                              SizedBox(height: Dimensions.height10),
+                              const Text(
+                                'GHC 3,000',
+                                style: TextStyle(fontWeight: FontWeight.w600),
+                              ),
+                              SizedBox(height: Dimensions.height30),
+                              const Text('Products'),
+                              SizedBox(height: Dimensions.height10),
+                              const Text(
+                                '200',
+                                style: TextStyle(fontWeight: FontWeight.w600),
+                              )
+                            ])),
+                  ),
                 )
               ]),
         ),
