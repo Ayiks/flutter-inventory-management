@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:inventory_1/app/data/models/product/product.dart';
 import 'package:inventory_1/app/data/models/store/store.dart';
-import 'package:inventory_1/app/modules/admin/dashboard/controllers/dashboard_controller.dart';
 import 'package:inventory_1/app/modules/admin/stores/controllers/edit_store_controller.dart';
 import 'package:inventory_1/app/modules/admin/stores/widgets/store_action_model.dart';
 import 'package:inventory_1/app/routes/app_pages.dart';
@@ -29,13 +28,7 @@ class StoresController extends GetxController {
   void onInit() {
     super.onInit();
 
-    FirebaseFirestore.instance
-        .collection('stores')
-        .where(
-          '',
-        )
-        .snapshots()
-        .listen(
+    FirebaseFirestore.instance.collection('stores').snapshots().listen(
       (event) {
         storeList(
           event.docs
@@ -86,15 +79,15 @@ class StoresController extends GetxController {
 
     final productsCollection = firebaseFirestore.collection('products');
     final orderCollection = firebaseFirestore.collection('order');
-    // final userCollection = firebaseFirestore.collection('users');
+    final userCollection = firebaseFirestore.collection('users');
 
     //delete all users related to the store
     firebaseFirestore.collection('stores').doc(store.id).delete().then((_) {
-      // userCollection.where('storeId').get().then((value) {
-      //   for (DocumentSnapshot doc in value.docs) {
-      //     doc.reference.delete();
-      //   }
-      // });
+      userCollection.where('company', isEqualTo: store.id).get().then((value) {
+        for (DocumentSnapshot doc in value.docs) {
+          doc.reference.delete();
+        }
+      });
 
       //delete all orders related to the store
       orderCollection.where('storeId', isEqualTo: store.id).get().then((value) {
