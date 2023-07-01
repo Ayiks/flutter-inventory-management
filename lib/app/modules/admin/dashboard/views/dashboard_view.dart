@@ -42,77 +42,99 @@ class DashboardView extends GetView<DashboardController> {
       ),
       body: Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: Dimensions.width20, vertical: Dimensions.height20),
+              horizontal: Dimensions.width10, vertical: Dimensions.height20),
           child: ListView(
             shrinkWrap: true,
             children: [
-              Text(
-                'Stats for ${controller.storeName}',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: Dimensions.font26),
-              ),
-              SizedBox(
-                height: Dimensions.height20,
-              ),
               Obx(() {
-                return Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        StatCard(
-                            color: Colors.blue[900],
-                            icon: Icons.calendar_month,
-                            label: 'Daily Sales',
-                            value: controller.dashboardStats().dailySales,
-                            onTap: () {
-                              Get.toNamed(
-                                Routes.TODAYS_ORDERS,
-                                arguments: controller.storeID,
-                              );
-                            }),
-                        StatCard(
-                            color: Colors.green,
-                            icon: Icons.list_alt,
-                            label: 'Total Stock ',
-                            value:
-                                controller.dashboardStats().totalProductCount,
-                            onTap: () {
-                              // print("tapped");
-                              Get.toNamed(Routes.ALL_PRODUCTS,
-                                  arguments: controller.storeID);
-                            }),
-                      ],
-                    ),
-                    SizedBox(height: Dimensions.height10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        StatCard(
-                            color: Colors.amber,
-                            icon: Icons.warning_amber_rounded,
-                            label: 'Low on Stock ',
-                            value: controller
-                                .dashboardStats()
-                                .lowOnStockProductsCount,
-                            onTap: () {
-                              Get.toNamed(Routes.LOW_ON_STOCK_PRODUCT,
-                                  arguments: controller.storeID);
-                            }),
-                        StatCard(
-                            color: Colors.red,
-                            icon: Icons.warning_amber_rounded,
-                            label: 'Out Of Stock ',
-                            value: controller
-                                .dashboardStats()
-                                .outOfStockProductsCount,
-                            onTap: () {
-                              Get.toNamed(Routes.OUT_OF_STOCK_PRODUCT,
-                                  arguments: controller.storeID);
-                            }),
-                      ],
-                    )
-                  ],
+                return Container(
+                  padding: EdgeInsets.only(
+                      right: 5,
+                      left: 5,
+                      top: Dimensions.height15,
+                      bottom: Dimensions.height15),
+                  decoration: BoxDecoration(
+                      // color: Colors.blue,
+                      border: Border.all(),
+                      borderRadius: BorderRadius.all(
+                          Radius.circular(Dimensions.radius20))),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 5, left: 30, bottom: 20),
+                        child: Text(
+                          'Stats for ${controller.storeName}',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: Dimensions.font26),
+                        ),
+                      ),
+                      SizedBox(
+                        height: Dimensions.height20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          StatCard(
+                              color: Colors.blue[900],
+                              icon: Icons.calendar_month,
+                              label: 'Daily Sales',
+                              value:
+                                  'GHc ${controller.dashboardStats().dailySales}',
+                              onTap: () {
+                                Get.toNamed(
+                                  Routes.TODAYS_ORDERS,
+                                  arguments: controller.storeID,
+                                );
+                              }),
+                          StatCard(
+                              color: Colors.green,
+                              icon: Icons.list_alt,
+                              label: 'Total Stock ',
+                              value:
+                                  '${controller.dashboardStats().totalProductCount}',
+                              onTap: () {
+                                // print("tapped");
+                                Get.toNamed(Routes.ALL_PRODUCTS,
+                                    arguments: controller.storeID);
+                              }),
+                        ],
+                      ),
+                      SizedBox(height: Dimensions.height30),
+                      const Divider(
+                        thickness: 2,
+                        color: Colors.black,
+                      ),
+                      SizedBox(height: Dimensions.height30),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          StatCard(
+                              color: Colors.amber,
+                              icon: Icons.warning_amber_rounded,
+                              label: 'Low on Stock ',
+                              value:
+                                  '${controller.dashboardStats().lowOnStockProductsCount}',
+                              onTap: () {
+                                Get.toNamed(Routes.LOW_ON_STOCK_PRODUCT,
+                                    arguments: controller.storeID);
+                              }),
+                          StatCard(
+                              color: Colors.red,
+                              icon: Icons.warning_amber_rounded,
+                              label: 'Out Of Stock ',
+                              value:
+                                  '${controller.dashboardStats().outOfStockProductsCount}',
+                              onTap: () {
+                                Get.toNamed(Routes.OUT_OF_STOCK_PRODUCT,
+                                    arguments: controller.storeID);
+                              }),
+                        ],
+                      )
+                    ],
+                  ),
                 );
               }),
               SizedBox(
