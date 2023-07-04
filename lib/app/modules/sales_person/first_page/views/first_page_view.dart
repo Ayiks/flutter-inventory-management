@@ -22,10 +22,23 @@ class FirstPageView extends GetView<FirstPageController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text('Welcome back!'),
-                Text(
-                  controller.userName,
-                  style: TextStyle(
-                      fontSize: Dimensions.font20, fontWeight: FontWeight.w600),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      controller.userName,
+                      style: TextStyle(
+                          fontSize: Dimensions.font20,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    TextButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(Icons.logout_outlined),
+                      label: const Text('Logout',
+                          style: TextStyle(color: Colors.red)),
+                      style: TextButton.styleFrom(iconColor: Colors.red),
+                    )
+                  ],
                 ),
                 SizedBox(height: Dimensions.height20),
                 GestureDetector(
@@ -61,10 +74,11 @@ class FirstPageView extends GetView<FirstPageController> {
                               SizedBox(height: Dimensions.height30),
                               const Text('Products'),
                               SizedBox(height: Dimensions.height10),
-                              const Text(
-                                '200',
-                                style: TextStyle(fontWeight: FontWeight.w600),
-                              )
+                              Obx(() => Text(
+                                    '${controller.products.length}',
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w600),
+                                  ))
                             ])),
                   ),
                 )
