@@ -6,7 +6,6 @@ import 'package:inventory_1/app/data/models/basket/basket_model.dart';
 import 'package:inventory_1/app/data/models/order/order.dart';
 import 'package:inventory_1/app/data/models/product/product.dart';
 import 'package:inventory_1/app/data/models/user_profile/user_profile.dart';
-import 'package:inventory_1/app/modules/login/controllers/login_controller.dart';
 import 'package:inventory_1/app/utils/helpers.dart';
 
 class CheckoutController extends GetxController {
