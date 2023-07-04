@@ -1,11 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:inventory_1/app/data/models/product/product.dart';
 import 'package:inventory_1/app/data/models/store/store.dart';
-import 'package:inventory_1/app/modules/admin/dashboard/controllers/dashboard_controller.dart';
-import 'package:inventory_1/app/modules/admin/orders/controllers/orders_controller.dart';
+import 'package:inventory_1/app/routes/app_pages.dart';
 
 class FirstPageController extends GetxController {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
   // final OrdersController _orderController = Get.find<OrdersController>();
   // final DashboardController _dashboardController =
   //     Get.find<DashboardController>();
@@ -19,6 +22,10 @@ class FirstPageController extends GetxController {
   set todaySales(value) => this._todaySales.value = value;
 
   final store = Rx<Store>(Store(id: '', name: '', location: ''));
+
+  final RxList<Product> _products = RxList<Product>([]);
+  List<Product> get products => _products;
+  set products(List<Product> value) => _products.value = value;
 
   @override
   void onInit() {
@@ -37,13 +44,15 @@ class FirstPageController extends GetxController {
       store(Store.fromJson({...data, "id": value.id}));
     });
 
-    // firebaseFirestore
-    //     .collection('products')
-    //     .where('storeId', isEqualTo: userCompanyId)
-    //     .snapshots()
-    //     .listen((event) {
-
-    //     });
+    firebaseFirestore
+        .collection('products')
+        .where('storeId', isEqualTo: userCompanyId)
+        .snapshots()
+        .listen((event) {
+      _products(event.docs
+          .map((e) => Product.fromJson({...e.data(), "id": e.id}))
+          .toList());
+    });
   }
 
   @override
@@ -54,5 +63,10 @@ class FirstPageController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  Future<void> handleSignOut() async {
+    await _firebaseAuth.signOut();
+    Get.offAndToNamed(Routes.LOGIN);
   }
 }
