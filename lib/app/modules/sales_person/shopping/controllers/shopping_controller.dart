@@ -95,4 +95,11 @@ class ShoppingController extends GetxController {
             product.name.toLowerCase().contains(searchText.toLowerCase()))
         .toList();
   }
+
+  @override
+  void onClose() async {
+    super.onClose();
+
+    await streamSubscription.cancel();
+  }
 }
