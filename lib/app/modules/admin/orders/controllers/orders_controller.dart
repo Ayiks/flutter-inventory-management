@@ -64,8 +64,8 @@ class OrdersController extends GetxController {
 // fetch from Firestore
     FirebaseFirestore.instance
         .collection('orders')
+        // .orderBy('createdAt', descending: true)
         .where('storeId', isEqualTo: storeId)
-        .orderBy('createdAt', descending: true)
         .snapshots()
         .listen((event) {
       _allOrders(
