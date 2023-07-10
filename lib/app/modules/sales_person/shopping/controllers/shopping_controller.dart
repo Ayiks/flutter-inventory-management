@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventory_1/app/data/models/product/product.dart';
-import 'package:inventory_1/app/modules/admin/users/controllers/user_profile_controller.dart';
 import 'package:inventory_1/app/modules/sales_person/shopping/controllers/checkout_controller.dart';
 import 'package:inventory_1/app/routes/app_pages.dart';
 
@@ -14,8 +13,6 @@ class ShoppingController extends GetxController {
   final CheckoutController checkoutController = Get.find<CheckoutController>();
   // final DashboardStatsController _dashboardStatsService =
   //     Get.find<DashboardStatsController>();
-  final UserProfileController _profileControler =
-      Get.find<UserProfileController>();
 
   final TextEditingController searchController = TextEditingController();
 
@@ -40,15 +37,11 @@ class ShoppingController extends GetxController {
   late StreamSubscription<QuerySnapshot<Map<String, dynamic>>>
       streamSubscription;
 
-  final _role = ''.obs;
-  String get role => _role.value;
-  set role(String value) => _role.value = value;
-
   String storeID = '';
   @override
   void onInit() {
     super.onInit();
-    role = _profileControler.userProfile().role!;
+
     storeID = Get.arguments;
     streamSubscription = FirebaseFirestore.instance
         .collection('products')

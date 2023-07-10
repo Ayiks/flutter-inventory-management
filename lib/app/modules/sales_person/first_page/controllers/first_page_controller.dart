@@ -17,10 +17,6 @@ class FirstPageController extends GetxController {
   String userCompanyId = '';
   String phoneNumber = '';
 
-  final _todaySales = ''.obs;
-  get todaySales => this._todaySales.value;
-  set todaySales(value) => this._todaySales.value = value;
-
   final store = Rx<Store>(Store(id: '', name: '', location: ''));
 
   final RxList<Product> _products = RxList<Product>([]);

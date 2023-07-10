@@ -32,7 +32,9 @@ class FirstPageView extends GetView<FirstPageController> {
                           fontWeight: FontWeight.w600),
                     ),
                     TextButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.handleSignOut();
+                      },
                       icon: const Icon(Icons.logout_outlined),
                       label: const Text('Logout',
                           style: TextStyle(color: Colors.red)),

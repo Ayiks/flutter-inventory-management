@@ -19,15 +19,13 @@ class ShoppingView extends GetView<ShoppingController> {
           style: TextStyle(fontSize: Dimensions.font26 - 2),
         ),
         actions: [
-          controller.role == 'user'
-              ? IconButton(
-                  onPressed: controller.handleSignOut,
-                  icon: Icon(
-                    Icons.logout_rounded,
-                    size: Dimensions.iconSize24,
-                    color: Colors.red,
-                  ))
-              : Container()
+          IconButton(
+              onPressed: controller.handleSignOut,
+              icon: Icon(
+                Icons.logout_rounded,
+                size: Dimensions.iconSize24,
+                color: Colors.red,
+              ))
         ],
         centerTitle: true,
       ),
