@@ -5,7 +5,6 @@ import 'package:inventory_1/app/data/models/store/store.dart';
 import 'package:inventory_1/app/widgets/buttons.dart';
 
 class CreateStoresController extends GetxController {
-  //TODO: Implement CreateStoresController
   final SubmitButtonController _submitButtonController =
       Get.find<SubmitButtonController>();
 
@@ -20,6 +19,10 @@ class CreateStoresController extends GetxController {
   final Rx<StoreDTO> _storeDTO =
       Rx<StoreDTO>(StoreDTO(name: '', location: '', address: ''));
   StoreDTO get storeDTO => _storeDTO.value;
+
+  final RxBool _isCreating = false.obs;
+  bool get isCreating => _isCreating.value;
+  set isCreating(bool value) => _isCreating.value = value;
 
   // late Worker _worker;
   @override
@@ -61,6 +64,7 @@ class CreateStoresController extends GetxController {
   void createStore() async {
     try {
       _submitButtonController.buttonState = ButtonState.loading;
+      isCreating = true;
       if (formKey.currentState!.validate()) {
         var docRef = _storeCollection.doc();
         await docRef.set({
@@ -79,10 +83,12 @@ class CreateStoresController extends GetxController {
       }
     } catch (e) {
       _submitButtonController.buttonState = ButtonState.error;
+      isCreating = false;
 
       Get.snackbar("Error", "Details: $e");
+    } finally {
+      isCreating = false;
     }
-    _submitButtonController.buttonState = ButtonState.idle;
   }
 
   @override
