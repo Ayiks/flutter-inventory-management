@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:inventory_1/app/data/models/user_profile/user_profile.dart';
@@ -11,11 +13,12 @@ class AllUsersController extends GetxController {
       Get.find<DashboardController>();
 
   RxList<UserProfile> allUsers = RxList<UserProfile>([]);
-
+  late StreamSubscription<QuerySnapshot<Map<String, dynamic>>>
+      userStreamSubscription;
   @override
   void onInit() {
     super.onInit();
-    FirebaseFirestore.instance
+    userStreamSubscription = FirebaseFirestore.instance
         .collection('users')
         .where('company', isEqualTo: dashboardController.storeID)
         .snapshots()
@@ -37,6 +40,7 @@ class AllUsersController extends GetxController {
 
   @override
   void onClose() {
+    userStreamSubscription.cancel();
     super.onClose();
   }
 
