@@ -72,24 +72,45 @@ class CreateStoresView extends GetView<CreateStoresController> {
                   onTap: () {
                     controller.createStore();
                   },
-                  child: Container(
-                    height: Dimensions.height10 * 5,
-                    width: Dimensions.width20 * 5,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: const Color.fromARGB(255, 9, 82, 142)),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 30, top: 15),
-                      child: Text(
-                        'Save',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: Dimensions.font16,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ),
+                  child: Obx(() {
+                    if (controller.isCreating) {
+                      return Container(
+                        height: Dimensions.height10 * 5,
+                        width: Dimensions.width20 * 5,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: const Color.fromARGB(255, 9, 82, 142),
+                        ),
+                        child: const Center(
+                          child: CircularProgressIndicator(
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.white),
+                          ),
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        height: Dimensions.height10 * 5,
+                        width: Dimensions.width20 * 5,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: const Color.fromARGB(255, 9, 82, 142),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 30, top: 15),
+                          child: Text(
+                            'Save',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: Dimensions.font16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                  }),
+                )
               ],
             )),
       ),
