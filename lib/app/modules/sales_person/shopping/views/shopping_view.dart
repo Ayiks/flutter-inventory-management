@@ -18,15 +18,6 @@ class ShoppingView extends GetView<ShoppingController> {
           'Shopping',
           style: TextStyle(fontSize: Dimensions.font26 - 2),
         ),
-        actions: [
-          IconButton(
-              onPressed: controller.handleSignOut,
-              icon: Icon(
-                Icons.logout_rounded,
-                size: Dimensions.iconSize24,
-                color: Colors.red,
-              ))
-        ],
         centerTitle: true,
       ),
       body: Obx(
