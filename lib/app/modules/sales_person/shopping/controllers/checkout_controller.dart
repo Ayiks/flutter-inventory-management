@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,8 @@ import 'package:inventory_1/app/utils/helpers.dart';
 
 class CheckoutController extends GetxController {
   RxMap<String, BasketItem> basket = RxMap({});
+  late StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>
+      userStreamSubscription;
 
   final userProfile = Rx<UserProfile>(
     UserProfile(
@@ -32,7 +36,7 @@ class CheckoutController extends GetxController {
     // final List<String> user = Get.arguments;
     // storeID = user[0];
     uid = FirebaseAuth.instance.currentUser!.uid;
-    FirebaseFirestore.instance
+    userStreamSubscription = FirebaseFirestore.instance
         .collection('users')
         .doc(uid)
         .snapshots()
@@ -135,6 +139,7 @@ class CheckoutController extends GetxController {
         ...orderDTO.toJson(),
         "salesAgent": userProfile().name,
         "storeId": storeID,
+        "createdAt": FieldValue.serverTimestamp(),
       });
 
       adjustProductInventory();
@@ -157,6 +162,13 @@ class CheckoutController extends GetxController {
   void completeCheckout() {
     basket.clear();
     Get.back();
+    // Get.back();
     Get.snackbar("success", "Sales confirmed succesfully");
+  }
+
+  @override
+  void onClose() async {
+    userStreamSubscription.cancel();
+    super.onClose();
   }
 }
