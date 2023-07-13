@@ -39,8 +39,8 @@ class UserProfileController extends GetxController {
 
   Future<void> handleSignOut() async {
     try {
-      await streamSubscription.cancel();
       await _firebaseAuth.signOut();
+      onClose();
       Get.offAndToNamed(Routes.LOGIN);
     } catch (e) {
       print("Signout error: $e");
@@ -49,6 +49,7 @@ class UserProfileController extends GetxController {
 
   @override
   void onClose() {
+    streamSubscription.cancel();
     super.onClose();
   }
 }
