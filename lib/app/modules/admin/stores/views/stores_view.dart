@@ -17,11 +17,7 @@ class StoresView extends GetView<StoresController> {
         title: const Text('My Stores'),
         centerTitle: true,
         actions: [
-          IconButton(
-              onPressed: () {
-                Get.toNamed(Routes.CREATE_STORES);
-              },
-              icon: const Icon(Icons.add)),
+          // IconButton(onPressed: () {}, icon: const Icon(Icons.add)),
           IconButton(
               onPressed: () {
                 controller.handleSignOut();
@@ -56,18 +52,19 @@ class StoresView extends GetView<StoresController> {
                   padding: EdgeInsets.all(Dimensions.height15),
                   itemBuilder: ((context, index) {
                     Store store = controller.storeList[index];
+
                     return GestureDetector(
                       onTap: () => Get.toNamed(Routes.DASHBOARD,
                           arguments: [store.id, store.name]),
-                      child: Obx(() => StoreCard(
-                            onPressed: () {
-                              controller.showAlertDialog(store: store);
-                            },
-                            title: store.name,
-                            numberOfProducts: '${controller.products.length}',
-                            valueOfProducts:
-                                "Ghc ${controller.getQuantity(store)}",
-                          )),
+                      child: StoreCard(
+                        onPressed: () {
+                          controller.showAlertDialog(store: store);
+                        },
+                        title: store.name,
+                        // numberOfProducts: '${controller.products.length}',
+                        // valueOfProducts:
+                        //     "Ghc ${controller.getQuantity(store)}",
+                      ),
                     );
                   }),
                   separatorBuilder: ((index, context) {
@@ -75,7 +72,10 @@ class StoresView extends GetView<StoresController> {
                   }),
                   itemCount: controller.storeList.length))),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        backgroundColor: const Color.fromARGB(255, 40, 3, 143),
+        onPressed: () {
+          Get.toNamed(Routes.CREATE_STORES);
+        },
         child: const Icon(Icons.add),
       ),
     );
