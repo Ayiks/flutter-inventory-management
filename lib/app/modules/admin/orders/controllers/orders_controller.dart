@@ -1,9 +1,10 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:inventory_1/app/data/models/order/order.dart' as o;
-import 'package:inventory_1/app/modules/admin/dashboard/controllers/dashboard_controller.dart';
 import 'package:inventory_1/app/utils/helpers.dart';
 
 class OrdersController extends GetxController {
@@ -11,6 +12,9 @@ class OrdersController extends GetxController {
       TextEditingController();
   final TextEditingController filterToDateTextEditingController =
       TextEditingController();
+
+  late StreamSubscription<QuerySnapshot<Map<String, dynamic>>>
+      orderStreamSubscription;
 
   // final DashboardController dashboardController =
   //     Get.find<DashboardController>();
@@ -62,7 +66,7 @@ class OrdersController extends GetxController {
     String storeId = Get.arguments;
 
 // fetch from Firestore
-    FirebaseFirestore.instance
+    orderStreamSubscription = FirebaseFirestore.instance
         .collection('orders')
         // .orderBy('createdAt', descending: true)
         .where('storeId', isEqualTo: storeId)
@@ -141,5 +145,11 @@ class OrdersController extends GetxController {
       }
       return false;
     }).toList();
+  }
+
+  @override
+  void onClose() {
+    orderStreamSubscription.cancel();
+    super.onClose();
   }
 }
