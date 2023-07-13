@@ -6,7 +6,7 @@ import '../controllers/stores_controller.dart';
 class StoresBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<EditStoreController>(() => EditStoreController(), fenix: true);
+    Get.lazyPut<EditStoreController>(() => EditStoreController());
 
     Get.lazyPut<StoresController>(
       () => StoresController(),
