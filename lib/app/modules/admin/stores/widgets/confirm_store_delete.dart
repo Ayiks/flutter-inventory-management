@@ -9,8 +9,8 @@ class ConfirmStoreDeleteAlertDialog extends GetView<StoresController> {
 
   const ConfirmStoreDeleteAlertDialog({
     required this.store,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,27 +20,46 @@ class ConfirmStoreDeleteAlertDialog extends GetView<StoresController> {
         color: Colors.red,
         size: Dimensions.font26 * 2,
       ),
-      content: const Text(
-          'This action will delete every data related this store.\n\n NB: This action is NOT reversible, do you want to proceed?'),
+      content: Obx(() {
+        if (controller.isDeleting) {
+          return const SizedBox(
+            child: Center(
+              child: Column(
+                children: [
+                  Text('Deleting store and related data, Please wait!...'),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  CircularProgressIndicator.adaptive(),
+                ],
+              ),
+            ),
+          );
+        } else {
+          return const Text(
+              'This action will delete every data related this store.\n\n NB: This action is NOT reversible, do you want to proceed?');
+        }
+      }),
       actions: [
         TextButton(
-            onPressed: () {
-              Get.back();
-              Get.back();
-            },
-            child: Text(
-              'No',
-              style: TextStyle(fontSize: Dimensions.font20),
-            )),
+          onPressed: () {
+            Get.back();
+            Get.back();
+          },
+          child: Text(
+            'No',
+            style: TextStyle(fontSize: Dimensions.font20),
+          ),
+        ),
         TextButton(
-            onPressed: () {
-              // TODO: complete confirmation.
-              controller.onDeleteStoreConfirmed(store);
-            },
-            child: Text(
-              'Yes',
-              style: TextStyle(color: Colors.red, fontSize: Dimensions.font16),
-            ))
+          onPressed: () {
+            controller.onDeleteStoreConfirmed(store);
+          },
+          child: Text(
+            'Yes',
+            style: TextStyle(color: Colors.red, fontSize: Dimensions.font16),
+          ),
+        ),
       ],
     );
   }
