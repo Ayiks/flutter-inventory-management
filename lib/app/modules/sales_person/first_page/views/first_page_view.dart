@@ -69,9 +69,12 @@ class FirstPageView extends GetView<FirstPageController> {
                               const Divider(),
                               const Text('Today\'s Sales'),
                               SizedBox(height: Dimensions.height10),
-                              const Text(
-                                'GHC 3,000',
-                                style: TextStyle(fontWeight: FontWeight.w600),
+                              Obx(
+                                () => Text(
+                                  'GHC ${controller.dashboardStats().dailySales}',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w600),
+                                ),
                               ),
                               SizedBox(height: Dimensions.height30),
                               const Text('Products'),
