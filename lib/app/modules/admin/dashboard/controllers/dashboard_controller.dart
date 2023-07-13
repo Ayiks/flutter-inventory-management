@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:inventory_1/app/data/models/dashboard_start/dashboard_stats.dart';
@@ -9,11 +8,9 @@ import 'package:inventory_1/app/data/models/order/order.dart' as o;
 import 'package:inventory_1/app/data/models/product/product.dart';
 import 'package:inventory_1/app/data/models/store/store.dart';
 import 'package:inventory_1/app/modules/admin/stores/controllers/stores_controller.dart';
-import 'package:inventory_1/app/routes/app_pages.dart';
 
 class DashboardController extends GetxController {
   final StoresController storeController = Get.find<StoresController>();
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   late StreamSubscription<QuerySnapshot<Map<String, dynamic>>>
       productStreamSubscription;
@@ -42,12 +39,6 @@ class DashboardController extends GetxController {
   final RxList _recentProducts = RxList([]);
   List get recentProducts => _recentProducts;
   set recentProducts(List value) => _recentProducts.value = value;
-
-  // final RxString _selectedStoreId = ''.obs;
-  // String get selectedStoreId => _selectedStoreId.value;
-  // set selectedStoreId(String value) => _selectedStoreId.value = value;
-
-  // late Worker _worker;
 
   final Rx<Store?> _store = Rx<Store?>(null);
   Store? get store => _store.value;
@@ -101,6 +92,7 @@ class DashboardController extends GetxController {
     orderStreamSubscription = FirebaseFirestore.instance
         .collection('orders')
         .where('storeId', isEqualTo: storeID)
+        // .orderBy('createdAt', descending: true)
         .snapshots()
         .listen(
       (event) {
@@ -108,16 +100,18 @@ class DashboardController extends GetxController {
         todaysOrders(
           event.docs
               .map((doc) => o.Order.fromJson({...doc.data(), "id": doc.id}))
-              .where((o.Order order) {
+              .where((order) {
             Timestamp? createdAt = order.createdAt;
 
-            final now = DateTime.now();
-            final newCreatedAt =
-                DateFormat.yMMMEd().format(createdAt!.toDate());
-            final newNow = DateFormat.yMMMEd().format(now);
+            if (createdAt != null) {
+              final now = DateTime.now();
+              final newCreatedAt =
+                  DateFormat.yMMMEd().format(createdAt.toDate());
+              final newNow = DateFormat.yMMMEd().format(now);
 
-            if (newCreatedAt == newNow) {
-              return true;
+              if (newCreatedAt == newNow) {
+                return true;
+              }
             }
 
             // if (createdAt != null) {
@@ -130,6 +124,15 @@ class DashboardController extends GetxController {
             return false;
           }).toList(),
         );
+        // todaysOrders(event.docs.map((doc) {
+        //   var data = doc.data();
+        //   if (data['createdAt'] == null) {
+        //     print("data has a null createdAt field");
+        //     print(data);
+        //     throw Error();
+        //   }
+        //   return o.Order.fromJson({...doc.data(), "id": doc.id});
+        // }).toList());
 
         // STEP 2: set the stats
         setDailySales();
@@ -209,20 +212,10 @@ class DashboardController extends GetxController {
   }
 
   @override
-  void onClose() async {
+  void onClose() {
+    productStreamSubscription.cancel();
+    orderStreamSubscription.cancel();
+    dashboardStreamSubscription.cancel();
     super.onClose();
-    await productStreamSubscription.cancel();
-    await orderStreamSubscription.cancel();
-    await dashboardStreamSubscription.cancel();
-  }
-
-  void handleSignOut() async {
-    try {
-      await productStreamSubscription.cancel();
-      await orderStreamSubscription.cancel();
-      await dashboardStreamSubscription.cancel();
-      await _firebaseAuth.signOut();
-      Get.offAndToNamed(Routes.LOGIN);
-    } catch (e) {}
   }
 }
