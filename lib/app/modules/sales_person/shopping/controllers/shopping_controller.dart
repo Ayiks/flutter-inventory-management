@@ -1,15 +1,13 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventory_1/app/data/models/product/product.dart';
 import 'package:inventory_1/app/modules/sales_person/shopping/controllers/checkout_controller.dart';
-import 'package:inventory_1/app/routes/app_pages.dart';
 
 class ShoppingController extends GetxController {
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final CheckoutController checkoutController = Get.find<CheckoutController>();
   // final DashboardStatsController _dashboardStatsService =
   //     Get.find<DashboardStatsController>();
@@ -72,11 +70,11 @@ class ShoppingController extends GetxController {
         everAll([_availableProducts, _searchText], (_) => searchForProducts());
   }
 
-  Future<void> handleSignOut() async {
-    await streamSubscription.cancel();
-    await _firebaseAuth.signOut();
-    Get.offAndToNamed(Routes.LOGIN);
-  }
+  // Future<void> handleSignOut() async {
+  //   await streamSubscription.cancel();
+  //   await _firebaseAuth.signOut();
+  //   Get.offAndToNamed(Routes.LOGIN);
+  // }
 
   getTotal() {
     return checkoutController.getGrandTotal();
@@ -91,8 +89,7 @@ class ShoppingController extends GetxController {
 
   @override
   void onClose() async {
+    streamSubscription.cancel();
     super.onClose();
-
-    await streamSubscription.cancel();
   }
 }
