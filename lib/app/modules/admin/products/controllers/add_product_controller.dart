@@ -20,6 +20,10 @@ class AddProductController extends GetxController {
       ProductDTO(name: '', price: 0, lowOnStock: 0, storeId: ''));
   ProductDTO get productDTO => _productDTO.value;
 
+  final RxBool _isCreated = false.obs;
+  bool get isCreated => _isCreated.value;
+  set isCreated(bool value) => _isCreated.value = value;
+
   late Worker _worker;
 
   String selectedStoreId = '';
@@ -88,10 +92,8 @@ class AddProductController extends GetxController {
   void addProductToFirestore() async {
     try {
       _submitButtonController.buttonState = ButtonState.loading;
+      isCreated = true;
       if (formKey.currentState!.validate()) {
-// set the submitcontroller.idFormValid = true
-// set the state to be loading
-
         await _productCollection.doc().set({
           ...productDTO.toJson(),
           "createdAt": FieldValue.serverTimestamp(),
@@ -106,8 +108,9 @@ class AddProductController extends GetxController {
           _submitButtonController.buttonState = ButtonState.error;
 
           Get.snackbar("Error", "Something went wrong... $onError");
-        }).timeout(const Duration(seconds: 10), onTimeout: () {
+        }).timeout(const Duration(seconds: 60), onTimeout: () {
           _submitButtonController.buttonState = ButtonState.error;
+          isCreated = false;
 
           Get.snackbar(
               "Error", "Please check your internet connection and try again");
@@ -115,12 +118,13 @@ class AddProductController extends GetxController {
       }
     } catch (e) {
       _submitButtonController.buttonState = ButtonState.error;
+      isCreated = false;
 
       Get.snackbar("Error", "Details: $e");
+    } finally {
+      isCreated = false;
     }
     // set the buttonState to idle
     _submitButtonController.buttonState = ButtonState.idle;
-
-    //TODO: Search BrainFuck on Google
   }
 }
