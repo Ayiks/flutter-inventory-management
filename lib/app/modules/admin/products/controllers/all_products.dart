@@ -157,6 +157,7 @@ class AllProductsController extends GetxController {
 
   @override
   void onClose() {
+    productStreamSubscription.cancel();
     super.onClose();
   }
 }
