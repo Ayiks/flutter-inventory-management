@@ -176,7 +176,7 @@ class CheckoutView extends GetView<CheckoutController> {
                   height: Dimensions.height20 * 2.5,
                   width: Dimensions.width20 * 8,
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 13, 71, 118),
+                      color: const Color.fromARGB(255, 13, 71, 118),
                       borderRadius:
                           BorderRadius.circular(Dimensions.radius15 - 5)),
                   child: Center(
