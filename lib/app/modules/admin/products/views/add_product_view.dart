@@ -357,28 +357,44 @@ class AddProductView extends GetView<AddProductController> {
                         ),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        controller.addProductToFirestore();
-                      },
-                      child: Container(
-                        height: Dimensions.height10 * 5,
-                        width: Dimensions.width20 * 5,
-                        decoration: BoxDecoration(
+                    GestureDetector(onTap: () {
+                      controller.addProductToFirestore();
+                    }, child: Obx(() {
+                      if (controller.isCreated) {
+                        return Container(
+                          height: Dimensions.height10 * 5,
+                          width: Dimensions.width20 * 5,
+                          decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: const Color.fromARGB(255, 9, 82, 142)),
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 30, top: 15),
-                          child: Text(
-                            'Save',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: Dimensions.font16,
-                                fontWeight: FontWeight.bold),
+                            color: const Color.fromARGB(255, 9, 82, 142),
                           ),
-                        ),
-                      ),
-                    ),
+                          child: const Center(
+                            child: CircularProgressIndicator(
+                              valueColor:
+                                  AlwaysStoppedAnimation<Color>(Colors.white),
+                            ),
+                          ),
+                        );
+                      } else {
+                        return Container(
+                          height: Dimensions.height10 * 5,
+                          width: Dimensions.width20 * 5,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: const Color.fromARGB(255, 9, 82, 142)),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 30, top: 15),
+                            child: Text(
+                              'Save',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: Dimensions.font16,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        );
+                      }
+                    })),
                   ],
                 )
               ],
