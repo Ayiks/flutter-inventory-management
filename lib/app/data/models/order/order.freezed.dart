@@ -305,8 +305,6 @@ mixin _$OrderDTO {
       throw _privateConstructorUsedError;
   double get orderQuantity => throw _privateConstructorUsedError;
   double get total => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -322,9 +320,7 @@ abstract class $OrderDTOCopyWith<$Res> {
   $Res call(
       {Map<String, BasketItem> orderDetails,
       double orderQuantity,
-      double total,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp? createdAt});
+      double total});
 }
 
 /// @nodoc
@@ -343,7 +339,6 @@ class _$OrderDTOCopyWithImpl<$Res, $Val extends OrderDTO>
     Object? orderDetails = null,
     Object? orderQuantity = null,
     Object? total = null,
-    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       orderDetails: null == orderDetails
@@ -358,10 +353,6 @@ class _$OrderDTOCopyWithImpl<$Res, $Val extends OrderDTO>
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as double,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as Timestamp?,
     ) as $Val);
   }
 }
@@ -376,9 +367,7 @@ abstract class _$$_OrderDTOCopyWith<$Res> implements $OrderDTOCopyWith<$Res> {
   $Res call(
       {Map<String, BasketItem> orderDetails,
       double orderQuantity,
-      double total,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp? createdAt});
+      double total});
 }
 
 /// @nodoc
@@ -395,7 +384,6 @@ class __$$_OrderDTOCopyWithImpl<$Res>
     Object? orderDetails = null,
     Object? orderQuantity = null,
     Object? total = null,
-    Object? createdAt = freezed,
   }) {
     return _then(_$_OrderDTO(
       orderDetails: null == orderDetails
@@ -410,10 +398,6 @@ class __$$_OrderDTOCopyWithImpl<$Res>
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as double,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as Timestamp?,
     ));
   }
 }
@@ -424,9 +408,7 @@ class _$_OrderDTO implements _OrderDTO {
   _$_OrderDTO(
       {required final Map<String, BasketItem> orderDetails,
       required this.orderQuantity,
-      required this.total,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          this.createdAt})
+      required this.total})
       : _orderDetails = orderDetails;
 
   factory _$_OrderDTO.fromJson(Map<String, dynamic> json) =>
@@ -444,13 +426,10 @@ class _$_OrderDTO implements _OrderDTO {
   final double orderQuantity;
   @override
   final double total;
-  @override
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  final Timestamp? createdAt;
 
   @override
   String toString() {
-    return 'OrderDTO(orderDetails: $orderDetails, orderQuantity: $orderQuantity, total: $total, createdAt: $createdAt)';
+    return 'OrderDTO(orderDetails: $orderDetails, orderQuantity: $orderQuantity, total: $total)';
   }
 
   @override
@@ -462,19 +441,13 @@ class _$_OrderDTO implements _OrderDTO {
                 .equals(other._orderDetails, _orderDetails) &&
             (identical(other.orderQuantity, orderQuantity) ||
                 other.orderQuantity == orderQuantity) &&
-            (identical(other.total, total) || other.total == total) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+            (identical(other.total, total) || other.total == total));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_orderDetails),
-      orderQuantity,
-      total,
-      createdAt);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_orderDetails), orderQuantity, total);
 
   @JsonKey(ignore: true)
   @override
@@ -494,9 +467,7 @@ abstract class _OrderDTO implements OrderDTO {
   factory _OrderDTO(
       {required final Map<String, BasketItem> orderDetails,
       required final double orderQuantity,
-      required final double total,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          final Timestamp? createdAt}) = _$_OrderDTO;
+      required final double total}) = _$_OrderDTO;
 
   factory _OrderDTO.fromJson(Map<String, dynamic> json) = _$_OrderDTO.fromJson;
 
@@ -506,9 +477,6 @@ abstract class _OrderDTO implements OrderDTO {
   double get orderQuantity;
   @override
   double get total;
-  @override
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_OrderDTOCopyWith<_$_OrderDTO> get copyWith =>

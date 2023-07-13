@@ -28,8 +28,6 @@ class OrderDTO with _$OrderDTO {
     required Map<String, BasketItem> orderDetails,
     required double orderQuantity,
     required double total,
-    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-    Timestamp? createdAt,
   }) = _OrderDTO;
 
   factory OrderDTO.fromJson(Map<String, dynamic> json) =>

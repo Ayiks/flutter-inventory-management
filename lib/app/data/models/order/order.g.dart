@@ -35,7 +35,6 @@ _$_OrderDTO _$$_OrderDTOFromJson(Map<String, dynamic> json) => _$_OrderDTO(
       ),
       orderQuantity: (json['orderQuantity'] as num).toDouble(),
       total: (json['total'] as num).toDouble(),
-      createdAt: timestampFromJson(json['createdAt']),
     );
 
 Map<String, dynamic> _$$_OrderDTOToJson(_$_OrderDTO instance) =>
@@ -44,5 +43,4 @@ Map<String, dynamic> _$$_OrderDTOToJson(_$_OrderDTO instance) =>
           instance.orderDetails.map((k, e) => MapEntry(k, e.toJson())),
       'orderQuantity': instance.orderQuantity,
       'total': instance.total,
-      'createdAt': timestampToJson(instance.createdAt),
     };
