@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventory_1/app/data/models/user_profile/user_profile.dart';
 import 'package:inventory_1/app/routes/app_pages.dart';
@@ -81,9 +82,15 @@ class LoginController extends GetxController {
               }
             });
           }
+        }).timeout(const Duration(seconds: 30), onTimeout: () {
+          Get.snackbar('Internet Error', 'PLease check your connection');
         });
       } else {
         _submitButtonController.buttonState = ButtonState.error;
+        Get.snackbar('Error', 'Please check your email and password again!',
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+            duration: const Duration(seconds: 5));
       }
     } catch (e) {
       Get.snackbar("Authentication Failed", "Please try again!");
